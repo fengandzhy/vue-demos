@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let data = {a:"张三"};
+    let vue  = new Vue({
+        el:"#app",
+        //data:data
+        data(){
+            return data;
+        }
+    });
+
+    console.log(vue);
+    console.log(vue.a === data.a);
+    data.a="李四";
+    console.log(vue.a,data.a);
+    vue.a = "王五";
+    console.log(data.a,vue.a);
+
+
+</script>
+</body>
+</html>
