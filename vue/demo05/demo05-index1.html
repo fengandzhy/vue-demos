@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div v-for="(item,index) in list" v-bind:key="item.id">
+        <div><label><input type="checkbox"/> {{item.title}}</label></div>
+    </div>
+    <button type="button" @click="add()">添加</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    let vue  = new Vue({
+        el:"#app",
+        data(){
+            return{
+                list:[
+                    {id:"1",title:'羊肉串', price:2},
+                    {id:"2",title:'啤酒', price:4},
+                    {id:"3",title:'花毛一体', price:10}
+                ]
+            }
+        },
+        methods:{
+            add(){
+                this.list.unshift({id:"4",title:'土豆片', price:5});
+            }
+        }
+    });
+
+
+
+</script>
+</body>
+</html>
