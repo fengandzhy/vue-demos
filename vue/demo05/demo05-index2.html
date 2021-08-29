@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div v-for="(item,index) in list" v-bind:key="index">
+        {{item.title}}
+        <div v-for="(childItem,childIndex) in item.children">
+                {{childItem.title}}
+        </div>
+    </div>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    let vue  = new Vue({
+        el:"#app",
+        data(){
+            return{
+                list:[
+                    {
+                        title:'肉类',
+                        children:[
+                            {title:'羊肉串'},
+                            {title:'牛肉串'},
+                            {title:'猪肉串'}
+                        ]
+                    },
+                    {
+                        title:'主食',
+                        children:[
+                            {title:'米饭'},
+                            {title:'馒头'},
+                            {title:'花卷'}
+                        ]
+                    }
+                ]
+            }
+        }
+    });
+
+
+
+</script>
+</body>
+</html>

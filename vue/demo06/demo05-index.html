@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div v-for="(item,index) in list">
+        {{index+1}}菜品:{{item.title}}, 价格{{item.price}}
+    </div>
+    <div v-for="(value,key,index) in obj">
+        索引{{index}}, 键 {{key}}, 值 {{value}}
+    </div>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    let vue  = new Vue({
+        el:"#app",
+        data(){
+            return{
+                list:[
+                    {title:'羊肉串', price:2},
+                    {title:'啤酒', price:4},
+                    {title:'花毛一体', price:10}
+                ],
+                obj:{title:'羊肉串', price:2,weight:'20g'}
+            }
+        }
+    });
+
+    vue.$data.list[1].price = 12;
+    vue.$data.list[1].title='燕京啤酒';
+    /**
+     * 1. 这个方法有三个参数,
+     * 数据源, key或者索引, 对象或是数组
+     *
+     * */
+    vue.$set(vue.$data.list,1,vue.$data.list[1])
+
+</script>
+</body>
+</html>

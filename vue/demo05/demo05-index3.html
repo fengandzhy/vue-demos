@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div v-for="(item,index) in computedList" v-bind:key="index">
+        {{item.title}}
+    </div>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    let vue  = new Vue({
+        el:"#app",
+        data(){
+            return{
+                list:[
+                    {title:'羊肉串', isShow:true},
+                    {title:'牛肉串', isShow:true},
+                    {title:'猪肉串', isShow:false},
+                    {title:'鸡肉串', isShow:true}
+                ]
+            }
+        },
+        computed:{
+            computedList(){
+                return this.list.filter(
+                    (item)=>{
+                        return item.isShow;
+                    }
+                );
+            }
+        }
+    });
+
+
+
+</script>
+</body>
+</html>
