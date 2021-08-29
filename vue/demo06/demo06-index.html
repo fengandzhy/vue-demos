@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <button type="button" v-on:click="greet">大家好</button>
+    <button type="button" @click="greet">缩写大家好</button>
+    <div>
+        <button type="button" @click="count-=1">减</button>
+            {{count}}
+        <button type="button" @click="count+=1">加</button>
+
+    </div>
+    <div>
+        <button type="button" @click="hello('Hello World!')">Hello World!</button>
+    </div>
+    <div>
+        姓名:<input type="text" @input="setName"/>{{name}}
+    </div>
+
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    let vue  = new Vue({
+        el:"#app",
+        data(){
+            return{
+                count:0,
+                name:''
+            }
+        },
+        methods:{
+            // greet(val){
+            //     alert('我有参数');
+            // },
+            greet(){
+                alert('大家好');
+            },
+            // hello(){
+            //     alert('牛逼了');
+            // },
+            hello(val){
+                alert(val);
+            },
+
+            setName(e){
+                console.log(e.target.value);
+                this.name=e.target.value;
+            }
+        }
+    });
+
+
+
+</script>
+</body>
+</html>
