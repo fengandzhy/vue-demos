@@ -10,21 +10,21 @@
 </div>
 <script src="../js/vue.js"></script>
 <script>
-    let data = {a:"张三"};
+    let d3 = {a:"张三"};
     let vue  = new Vue({
         el:"#app",
         //data:data
         data(){
-            return data;
+            return d3;
         }
     });
 
-    console.log(vue);
-    console.log(vue.a === data.a);
-    data.a="李四";
-    console.log(vue.a,data.a);
+    //console.log(vue);
+    console.log(vue.a === d3.a);
+    d3.a="李四";
+    console.log(vue.a,d3.a);
     vue.a = "王五";
-    console.log(data.a,vue.a);
+    console.log(d3.a,vue.a);
 
 
 </script>

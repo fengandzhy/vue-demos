@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{txt}}<br/>
+    <span v-html="txt"></span><br/>
+    <a v-bind:href="url">百度</a><br/>
+    {{url.toUpperCase()}}<br/>
+    {{a+b}}<br/>
+    {{isShow?'显示':'不显示'}}
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    let vue  = new Vue({
+        el:"#app",
+        data(){
+            return{
+                txt:'<span style="color:#00FF00">大家好</span>',
+                url:'http://www.baidu.com',
+                a:1,
+                b:2,
+                isShow:false
+            }
+        }
+    });
+</script>
+</body>
+</html>
