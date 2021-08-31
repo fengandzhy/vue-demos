@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+        .div{
+            color:#00FF00;
+            size:15px;
+        }
+        .div1{
+            height: 100px;
+            width:100px;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <input type="text" v-model="msg"> {{msg}}
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    let vue  = new Vue({
+        el:"#app",
+        data(){
+            return{
+                msg:''
+            }
+        },
+        methods:{
+
+        }
+    });
+
+
+
+</script>
+</body>
+</html>
