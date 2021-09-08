@@ -7,20 +7,33 @@
         [v-cloak]{
             display:none;
         }
-        .div{
-            color:#00FF00;
-            size:15px;
-        }
-        .div1{
-            height: 100px;
-            width:100px;
-            border: 1px solid blue;
-        }
+
     </style>
 </head>
 <body>
 <div id="app" v-cloak>
-    <input type="text" v-model="msg"> {{msg}}
+    <input type="text" v-model="item"/> <button type="button" @click="addItem" >添加</button>
+    <div>
+        <table width="100%" border="1" cellspacing="0" cellpadding="0">
+            <tr style="color:#FFFFFF;font-size:16px;">
+                <td height="40" align="center" bgcolor="#3399FF"><label>
+                    <input type="checkbox">全选</label></td>
+                <td align="center" bgcolor="#3399FF">标题</td>
+                <td align="center" bgcolor="#3399FF">管理</td>
+            </tr>
+            <tr style="font-size:14px;" v-for="(item,index) in items">
+                <td height="40" align="center">
+                    <input type="checkbox" v-bind:checked="item.checked" />
+                </td>
+                <td align="center" >{{item.title}}</td>
+                <td align="center"><a href="#" @click="delItem(index)">删除</a></td>
+            </tr>
+            <tr>
+                <td colspan="3" height="40"><button type="button">批量删除</button>&nbsp;&nbsp;
+                    <button type="button">提交</button></td>
+            </tr>
+        </table>
+    </div>
 </div>
 <script src="../js/vue.js"></script>
 <script>
@@ -29,10 +42,30 @@
         el:"#app",
         data(){
             return{
-                msg:''
+                item:'',
+                items:[]
             }
         },
         methods:{
+            addItem(){
+                this.item = this.item.trim();
+                if(this.item.length==0){
+                    alert('请输入内容!');
+                    return;
+                }
+                var temp = {
+                    checked:false,
+                    title:this.item
+                }
+
+                this.items.push(temp);
+                this.item='';
+            },
+
+            delItem(index){
+
+            }
+
 
         }
     });
