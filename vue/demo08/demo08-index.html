@@ -7,15 +7,6 @@
         [v-cloak]{
             display:none;
         }
-        .div{
-            color:#00FF00;
-            size:15px;
-        }
-        .div1{
-            height: 100px;
-            width:100px;
-            border: 1px solid blue;
-        }
     </style>
 </head>
 <body>
@@ -30,6 +21,11 @@
         data(){
             return{
                 msg:''
+            }
+        },
+        computed:{
+            msg(){
+                return 'abc'
             }
         },
         methods:{
