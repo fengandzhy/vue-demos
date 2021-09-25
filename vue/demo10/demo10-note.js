@@ -8,7 +8,7 @@
  *
  * 4. v-model="member" 要在computed里面起作用, 第一这个computed 里面的member必须是变量. 第二这个变量必须是set get方法, 而且这个
  * set get方法最终落实到data()里面的变量. 假设在computed里面还有一个member1, 你把这个member的set get方法落实到member1上,但是这个
- * member1也是要有set get 方法的, 在member1的set get方法上最终还是要落实到data()里面的的变量上. 
+ * member1也是要有set get 方法的, 在member1的set get方法上最终还是要落实到data()里面的的变量上.
  *
  *
  *
