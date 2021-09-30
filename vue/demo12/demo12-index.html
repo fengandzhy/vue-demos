@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>watch</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+        .box1{
+            width:100px;
+            height:100px;
+            border:1px solid #FF0000;
+            color:#FF0000;
+            margin-bottom: 20px;
+        }
+        .box2{
+            width:100px;
+            height:100px;
+            border:1px solid #00FF00;
+            color:#00FF00;
+            margin-bottom: 20px;
+        }
+        .box3{
+            width:100px;
+            height:100px;
+            border:1px solid #0000FF;
+            color:#0000FF;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="box1" ref="box1">box one</div>
+    <div class="box2" ref="box2">box two</div>
+    <div class="box3" ref="box3">box three</div>
+
+    <button @click="check">点击</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    let vue  = new Vue({
+        el:"#app",
+        data(){
+            return {
+                name: '张三'
+            }
+        },
+        methods:{
+            check(){
+                console.log(this.$refs.box1.innerHTML);
+            }
+        },
+        mounted(){
+            console.log(this.$refs.box1.innerHTML);
+            console.log(this.$refs.box1.parentNode.innerHTML);
+            console.log(this.$refs['box2'].nextElementSibling);
+            console.log(this.$refs['box3'].previousElementSibling);
+            console.log(this.$refs['box3'].__proto__);
+        }
+
+
+    });
+</script>
+</body>
+</html>
