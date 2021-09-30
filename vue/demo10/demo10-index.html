@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>computed</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    单价:{{price}}<br/>
+    <button @click="++amount">+</button>数量:{{amount}}
+    <button @click="amount>0?--amount:0">-</button><br/>
+    总价:{{total}}<br/>
+    <input type="text" v-model="member"/>
+    {{member}}<br/>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    let vue  = new Vue({
+        el:"#app",
+        data(){
+            return{
+                price:17000,
+                amount:0,
+                // member:'999',
+                abc:''
+            }
+        },
+        computed:{
+            total(){
+                return parseFloat((this.price * this.amount).toFixed(2));
+            },
+            // member(){
+            //   return 239;
+            // },
+            member: {
+                get(){
+                    return this.abc;
+                },
+                set(val){
+                    this.abc = val;
+                }
+            }
+        }
+    });
+
+
+
+</script>
+</body>
+</html>
