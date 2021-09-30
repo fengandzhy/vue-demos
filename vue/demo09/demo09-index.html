@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>v-for</title>
+    <title>小例子</title>
     <style>
         [v-cloak]{
             display:none;
@@ -17,19 +17,19 @@
         <table width="100%" border="1" cellspacing="0" cellpadding="0">
             <tr style="color:#FFFFFF;font-size:16px;">
                 <td height="40" align="center" bgcolor="#3399FF"><label>
-                    <input type="checkbox">全选</label></td>
+                    <input type="checkbox" @click="selectAll()">全选</label></td>
                 <td align="center" bgcolor="#3399FF">标题</td>
                 <td align="center" bgcolor="#3399FF">管理</td>
             </tr>
             <tr style="font-size:14px;" v-for="(item,index) in items">
                 <td height="40" align="center">
-                    <input type="checkbox" v-bind:checked="item.checked" />
+                    <input type="checkbox" @click="selectItem(index)" v-bind:checked="item.checked" />
                 </td>
                 <td align="center" >{{item.title}}</td>
                 <td align="center"><a href="#" @click="delItem(index)">删除</a></td>
             </tr>
             <tr>
-                <td colspan="3" height="40"><button type="button">批量删除</button>&nbsp;&nbsp;
+                <td colspan="3" height="40"><button type="button" @click="batchDel()">批量删除</button>&nbsp;&nbsp;
                     <button type="button">提交</button></td>
             </tr>
         </table>
@@ -43,7 +43,8 @@
         data(){
             return{
                 item:'',
-                items:[]
+                items:[],
+                isAll:false
             }
         },
         methods:{
@@ -63,7 +64,32 @@
             },
 
             delItem(index){
+                this.items.splice(index,1);
+            },
 
+            selectItem(index){
+               if(!this.items[index].checked){
+                   this.items[index].checked = true;
+               }
+            },
+
+            batchDel(){
+                if(this.items.length>0){
+                    for (let i=0;i<this.items.length;i++){
+                        if (this.items[i].checked){
+                            this.items.splice(i--,1);
+                        }
+                    }
+                }
+            },
+
+            selectAll(){
+                this.isAll = !this.isAll;
+                if(this.items.length>0){
+                    this.items.forEach((item,index)=>{
+                        item.checked = this.isAll;
+                    })
+                }
             }
 
 
