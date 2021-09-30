@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>公共组件</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <public-component></public-component>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    Vue.component('PublicComponent',Vue.extend({
+        data(){
+            return {
+                title:'我是公共组件'
+            }
+        },
+        template: '<div>{{title}}</div>'
+
+
+    }));
+
+    new Vue({
+        el:'#app'
+    })
+
+</script>
+</body>
+</html>
