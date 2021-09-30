@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>watch</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+        .child{
+            margin-left:20px;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    {{name}}
+    <button @click="change()">改名</button>
+    <input type="text" v-model="getName"/>
+    <br/>
+    <input type="text" v-model="classify.children.title"/> {{classify.children.title}}
+    <br/>
+    -------------------------------------------------------------------------------
+    <div v-for="(item,index) in classifies" :key="index" >
+        {{item.title}}
+        <div class="child" v-for="(item2,index2) in item.children" :key="index2">
+            {{item2.title}}
+        </div>
+    </div>
+    <button @click="classifies[0].children[0].title='鸡肉串'">改变</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    let vue  = new Vue({
+        el:"#app",
+        data(){
+            return{
+                name:'张三',
+                classify:{
+                    title:'肉类',
+                    children:{
+                        title:'羊肉串'
+                    }
+                },
+                classifies:[
+                    {
+                    title:'肉类',
+                    children:[
+                        {title: '羊肉串'},
+                        {title: '牛肉串'},
+                        {title: '猪肉串'}
+                    ]
+                    },
+                    {
+                        title:'饮料',
+                        children:[
+                            {title: '可乐'},
+                            {title: '雪碧'},
+                            {title: '美年达'}
+                        ]
+                    }
+                ]
+            }
+        },
+        methods:{
+           change(){
+               this.name = this.name+"1";
+           }
+        },
+        computed:{
+            getName:{
+                get(){
+                    return this.name;
+                },
+                set(val){
+                    this.name = val;
+                }
+            }
+        },
+        watch:{
+            name(newValue,oldValue){
+                console.log("更新前:"+oldValue);
+                console.log("更新后:"+newValue);
+            },
+
+            getName(newValue,oldValue){
+                console.log("getName更新前:"+oldValue);
+                console.log("getName更新后:"+newValue);
+            },
+
+            'classify.children.title'(newValue,oldValue){
+                console.log("监听某一个属性更新前:"+oldValue);
+                console.log("监听某一个属性更新后:"+newValue);
+            },
+            classifies:{
+                handler(val){
+                    console.log(JSON.stringify(val));
+                    console.log('aaaa');
+                },
+                deep:true
+            }
+        }
+    });
+</script>
+</body>
+</html>
