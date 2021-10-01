@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>局部组件</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <input-component></input-component>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    new Vue({
+       el:'#app',
+       components:{
+           InputComponent:{
+               data(){
+                   return{
+                       name:'张三'
+                   }
+               },
+               template:'<div> <input type="text" v-model="name"/>{{name}}</div>'
+           }
+       }
+    });
+
+</script>
+</body>
+</html>

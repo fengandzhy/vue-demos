@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>局部组件1</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <b-component></b-component>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    Vue.component('PublicComponent',{
+        template: '<div>全局组件</div>'
+    });
+
+    let AComponent = {
+        data(){
+            return{
+                name:'张三'
+            }
+        },
+        template: `<div>
+        <public-component></public-component>
+        <input type="text" v-model="name"/>{{name}}<br/>
+        组件A
+        </div>`
+    };
+
+    let BComponent = {
+        template:`
+            <div>
+              <a-component></a-component>
+              组件B
+            </div>
+        `,
+        components: {
+            AComponent
+        }
+    }
+
+    new Vue({
+        el:'#app',
+        components:{
+            BComponent
+        }
+    })
+
+</script>
+</body>
+</html>
