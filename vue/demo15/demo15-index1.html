@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件1</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <father-component></father-component>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let SonComponent={
+        // props:['title','sub-title'],
+        props: {
+           'title':{
+               type:String
+           },
+           'sub-title':{
+               type:String,
+               required:true
+            },
+            'default-value':{
+                type:String,
+                default:'默认值属性!'
+            },
+            'list-arr':{
+               type:Array,
+                default:()=>['羊肉串','猪肉串','牛肉串']
+            }
+        },
+        template:`
+            <div>
+            {{title}}-{{subTitle}}-{{defaultValue}}
+            <div v-for="(item,index) in listArr" :key="index">
+                {{item}}
+            </div>
+            </div>
+        `
+    };
+
+    let FatherComponent = {
+        data(){
+            return{
+                title:'父组件title',
+                subTitle:'父组件subTitle',
+                arr:['啤酒','可乐','冰红茶']
+            }
+        },
+        template: `
+          <div>
+            <son-component :title="this.title" :sub-title="this.subTitle" :list-arr="this.arr"></son-component>
+
+          </div>
+        `,
+        components: {
+            SonComponent
+        }
+    };
+
+    new Vue({
+        el:'#app',
+        components:{
+            FatherComponent
+        }
+    });
+
+</script>
+</body>
+</html>

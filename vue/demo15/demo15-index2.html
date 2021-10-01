@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>局部组件1</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <father-component></father-component>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let SonComponent = {
+        data(){
+            return{
+                name:this.fatherName
+            }
+        },
+        props:{
+            'father-name':{
+                type:String
+            }
+        },
+        template: `
+            <div>{{this.name}}
+              <button @click="name = name=='李四'?'张三':'李四'">改变</button>
+            </div>
+        `
+    }
+
+    let FatherComponent = {
+        data(){
+            return{
+                name:'张三'
+            }
+        },
+        template:`
+            <div>
+                <son-component :father-name="this.name"></son-component>
+            </div>
+        `,
+        components: {
+            SonComponent
+        }
+    };
+
+    new Vue({
+        el:'#app',
+        components:{
+            FatherComponent
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件通信</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <father-component></father-component>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+    let SonComponent={
+        props:['title','sub-title'],
+        // data(){
+        //     return{
+        //         title:'a'
+        //     }
+        // },
+        template:`
+            <div>{{title}}-{{subTitle}}</div>
+        `
+    };
+
+    let FatherComponent = {
+        data(){
+            return{
+                title:'父组件title',
+                subTitle:'父组件subTitle'
+            }
+        },
+        template: `
+          <div>
+            <son-component :title="this.title" :sub-title="this.subTitle"></son-component>
+          </div>
+        `,
+        components: {
+            SonComponent
+        }
+    };
+
+    new Vue({
+       el:'#app',
+       components:{
+           FatherComponent
+       }
+    });
+
+</script>
+</body>
+</html>
