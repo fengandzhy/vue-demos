@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父组件调用子组件方法</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let SonComponent = {
+        template: `
+            <div>子组件</div>
+        `,
+        methods:{
+            send(){
+                console.log('我是子组件方法');
+            }
+        }
+    };
+
+    let FatherComponent = {
+        template: `
+          <div>
+            <son-component ref="children"></son-component>
+            <button @click="handleClick">调用子组件方法</button>
+          </div>
+        `,
+        components: {
+            SonComponent
+        },
+        methods:{
+            handleClick(){
+                this.$refs['children'].send();
+            }
+        }
+    };
+
+    new Vue({
+        el:"#app",
+        components: {
+            FatherComponent
+        },
+        template:`
+          <father-component></father-component>
+        `
+    });
+
+</script>
+</body>
+</html>
