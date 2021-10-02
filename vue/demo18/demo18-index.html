@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件双向绑定</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let InputComponent = {
+        template:`
+            <input type='text' v-model='currentVal'/>
+        `,
+        props:{
+            value:{
+                type: String
+            }
+        },
+        computed:{
+            currentVal:{
+                get(){
+                    return this.value
+                },
+                set(val){
+                    this.$emit('input',val);
+                }
+            }
+        }
+    };
+    let AppComponent={
+        data(){
+            return {
+                text: ""
+            }
+        },
+        template: `
+          <div>
+            <input-component v-model="text"></input-component>{{text}}
+          </div>
+        `,
+        components:{
+            InputComponent
+        }
+    };
+
+    new Vue({
+        el:"#app",
+        components: {
+            AppComponent
+        },
+        template:`
+          <app-component></app-component>
+        `
+    });
+
+</script>
+</body>
+</html>
