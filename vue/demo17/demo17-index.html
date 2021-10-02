@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>父子组件通信</title>
+    <title>兄弟组件通信</title>
     <style>
         [v-cloak]{
             display:none;
@@ -16,21 +16,21 @@
 </div>
 <script src="../js/vue.js"></script>
 <script>
-
-    let SonComponent={
+    let bus = new Vue();
+    let AComponent = {
         template:`
             <div>
-              <button @click="handleClick">传值</button>
+                <button @click="handleClick">传值</button>
             </div>
         `,
         methods:{
             handleClick(){
-                this.$emit('handle-click','子组件值value1','子组件值value2');
+                bus.$emit('handle-click','value1','value2');
             }
         }
-    };
+    }
 
-    let FatherComponent = {
+    let BComponent = {
         data(){
             return{
                 val1:'',
@@ -38,33 +38,28 @@
             }
         },
         template: `
-          <div>
-            <son-component v-on:handle-click="getVal"></son-component>
-            {{val1}} {{val2}}
-          </div>
+            <div>{{val1}}  {{val2}}</div>
         `,
-        components: {
-            SonComponent
-        },
-        methods:{
-            getVal(val1,val2){
+        created(){
+            bus.$on('handle-click',(val1,val2)=>{
                 this.val1 = val1;
                 this.val2 = val2;
-            }
+            })
         }
-
-    };
+    }
 
     new Vue({
        el:'#app',
        components:{
-           FatherComponent
+           AComponent,
+           BComponent
        },
-       template:`
-           <div>
-              <father-component></father-component>
-           </div>
-       `
+        template:`
+          <div>
+            <a-component></a-component>
+            <b-component></b-component>
+          </div>
+        `
     });
 
 </script>
