@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>配合animate.css实现动画效果</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+        .box{
+            width:100px;
+            height: 100px;
+            background-color: #0000FF;
+            font-size:14px;
+            color:#FFFFFF;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let AppComponent = {
+        data(){
+            return{
+                show:true
+            }
+        },
+        template: `
+            <div>
+                <transition enter-active-class="animate__animated animate__bounce"
+                            leave-active-class="animate__animated animate__rotateInDownLeft">
+                  <div class="box" v-if="show"></div>
+                </transition>
+                <button type="button" @click="show=!show">go</button>
+            </div>
+        `
+    }
+
+
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+
+            }
+        },
+        components:{
+            AppComponent
+        },
+        template:`
+          <div>
+            <app-component></app-component>
+          </div>
+        `,
+        methods:{
+
+        }
+    });
+
+</script>
+</body>
+</html>
