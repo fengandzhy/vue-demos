@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>具名插槽</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+        
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let BaseLayout = {
+        template: `
+            <div>
+                <header>
+                    <slot name="header" value="Abc" value1="BCd" value3="fcd"></slot>
+                </header>
+                <slot></slot>
+                <footer>
+                    <slot name="footer"></slot>
+                </footer>
+            </div>
+        `
+    }
+
+
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+
+            }
+        },
+        components:{
+            BaseLayout
+        },
+        template:`
+          <div>
+            <base-layout>
+              <template #header="slotProps">
+                <h1>我是页头{{slotProps.value}}{{slotProps.value1}}{{slotProps.value2}}</h1>
+              </template>
+              <div>我是中部</div>
+              <template v-slot:footer>
+                <h2>我是页脚</h2>
+              </template>
+            </base-layout>
+          </div>
+        `,
+        methods:{
+
+        }
+    });
+
+</script>
+</body>
+</html>
