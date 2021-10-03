@@ -5,6 +5,6 @@
  *
  * 2. 一般情况下用解构赋值的方法来代替上面的取值方式<slot name="footer"  value="A" value1="B" value2="C"></slot>
  * v-slot:footer="{value,value1,value2:val2}" <h2>我是页脚{{value}},{{value1}},{{val2}}</h2>
- * 
+ *
  *
  * */

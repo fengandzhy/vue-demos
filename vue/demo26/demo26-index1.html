@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+        .box{
+            width:100px;
+            height: 100px;
+            background-color: #0000FF;
+            font-size:14px;
+            color:#FFFFFF;
+        }
+        .bounce-enter-active{
+            animation:bounce-in .5s;
+        }
+        .bounce-leave-active{
+            animation: bounce-in .5s reverse;
+        }
+        @keyframes bounce-in {
+            0%{transform: scale(0)}
+            50%{transform: scale(1.5)}
+            100%{transform: scale(1)}
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let AppComponent = {
+        data(){
+            return{
+                show:true
+            }
+        },
+        template: `
+            <div>
+                <button type="button" @click="show=!show">点击</button>
+                <transition name="bounce">
+                    <div class="box" v-if="show">Hello</div>
+                </transition>
+            </div>
+        `
+    }
+
+
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+
+            }
+        },
+        components:{
+            AppComponent
+        },
+        template:`
+          <div>
+            <app-component></app-component>
+          </div>
+        `,
+        methods:{
+
+        }
+    });
+
+</script>
+</body>
+</html>

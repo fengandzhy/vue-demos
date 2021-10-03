@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+        .box{
+            width:100px;
+            height: 100px;
+            background-color: #0000FF;
+            font-size:14px;
+            color:#FFFFFF;
+        }
+        /*进入过渡时的开始状态*/
+        .slide-fade-enter{
+            transform: translateX(0px);
+        }
+        /*进入过渡时生效状态*/
+        .slide-fade-enter-active{
+            transition: all .3s ease;
+        }
+        /*离开时过渡生效的状态*/
+        .slide-fade-leave-active{
+            transition: all .5s ease;
+        }
+        /*离开过渡结束状态*/
+        .slide-fade-leave-to{
+            transform: translateX(200px);
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let AppComponent = {
+        data(){
+            return{
+               show:true
+            }
+        },
+        template: `
+            <div>
+                <button type="button" @click="show=!show">点击</button>
+                <transition name="slide-fade">
+                    <div class="box" v-if="show">Hello</div>
+                </transition>
+            </div>
+        `
+    }
+
+
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+
+            }
+        },
+        components:{
+            AppComponent
+        },
+        template:`
+          <div>
+            <app-component></app-component>
+          </div>
+        `,
+        methods:{
+
+        }
+    });
+
+</script>
+</body>
+</html>

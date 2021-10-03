@@ -7,7 +7,7 @@
         [v-cloak]{
             display:none;
         }
-        
+
     </style>
 </head>
 <body>
@@ -43,15 +43,15 @@
         },
         template:`
           <div>
-            <base-layout>
-              <template #header="slotProps">
-                <h1>我是页头{{slotProps.value}}{{slotProps.value1}}{{slotProps.value2}}</h1>
-              </template>
-              <div>我是中部</div>
-              <template v-slot:footer="{value,value1,value2:val2}">
-                <h2>我是页脚{{value}},{{value1}},{{val2}}</h2>
-              </template>
-            </base-layout>
+          <base-layout>
+            <template #header="slotProps">
+              <h1>我是页头{{slotProps.value}}{{slotProps.value1}}{{slotProps.value2}}</h1>
+            </template>
+            <div>我是中部</div>
+            <template v-slot:footer="{value,value1,value2:val2}">
+              <h2>我是页脚{{value}},{{value1}},{{val2}}</h2>
+            </template>
+          </base-layout>
           </div>
         `,
         methods:{
