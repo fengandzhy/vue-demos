@@ -24,7 +24,7 @@
                 </header>
                 <slot></slot>
                 <footer>
-                    <slot name="footer"></slot>
+                    <slot name="footer"  value="A" value1="B" value2="C"></slot>
                 </footer>
             </div>
         `
@@ -48,8 +48,8 @@
                 <h1>我是页头{{slotProps.value}}{{slotProps.value1}}{{slotProps.value2}}</h1>
               </template>
               <div>我是中部</div>
-              <template v-slot:footer>
-                <h2>我是页脚</h2>
+              <template v-slot:footer="{value,value1,value2:val2}">
+                <h2>我是页脚{{value}},{{value1}},{{val2}}</h2>
               </template>
             </base-layout>
           </div>
