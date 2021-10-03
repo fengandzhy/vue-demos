@@ -2,12 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>父组件调用子组件方法</title>
+    <title>动态组件</title>
     <style>
         [v-cloak]{
             display:none;
         }
-
+        .tab-wrap{
+            width:100%;
+        }
+        .tab-wrap .tab, .main .classify-tab{
+            display: inline-block;
+            padding: 5px 10px;
+            border: 1px solid #EFEFEF;
+            margin-right:5px;
+            font-size:14px;
+        }
+        .tab-wrap a,.main a{
+            color:#000000;
+        }
+        .tab-wrap .tab.active, .main .classify-tab.active{
+            background-color: #0000FF;
+            color:#FFFFFF;
+        }
+        .main{
+            border:1px solid #EFEFEF;
+            padding:10px;
+        }
     </style>
 </head>
 <body>
@@ -16,14 +36,94 @@
 </div>
 <script src="../js/vue.js"></script>
 <script>
+    let DetailsComponent = {
+        template: `
+            <div class="main">菜品详情</div>
+        `
+    };
 
+    let LoginComponent = {
+        template: `
+            <div class="main">
+                <input type="text"/><button>登录</button>
+            </div>
+        `
+    };
+    let ClassifyComponent = {
+        data(){
+            return {
+                tabs:[
+                    {id:0,title:'羊肉串',active:true},
+                    {id:1,title:'牛肉串',active:false},
+                    {id:2,title:'猪肉串',active:false}
+                ]
+            }
+        },
+        template: `
+            <div class="main">
+              <a href="#" v-for="(item,index) in tabs" :key="item.id" @click="selectTab(index)">
+                  <div :class="{'classify-tab':true,'active':item.active}">
+                    {{item.title}}
+                  </div>
+              </a>
+            </div>
+        `,
+        methods: {
+            selectTab(index){
+                for(let i=0;i<this.tabs.length;i++){
+                    if(this.tabs[i].active){
+                        this.tabs[i].active = false;
+                        break;
+                    }
+                }
+                this.tabs[index].active = true;
+            }
+        }
+    }
     new Vue({
         el:"#app",
+        data(){
+            return{
+                tabs:[
+                    {title:'菜品详情',active:true,component:'details-component'},
+                    {title:'会员登录',active:false,component:'login-component'},
+                    {title:'菜品分类',active:false,component:'classify-component'}
+                ],
+                currentComponent:'details-component'
+            }
+        },
         components: {
-
+            DetailsComponent,
+            LoginComponent,
+            ClassifyComponent
+        },
+        methods:{
+            selectTab(index,component){
+                for(let i=0;i<this.tabs.length;i++){
+                    if(this.tabs[i].active){
+                        this.tabs[i].active = false;
+                        break;
+                    }
+                }
+                this.tabs[index].active = true;
+                this.currentComponent = component;
+            }
         },
         template:`
+          <div>
+            <div class="tab-wrap">
 
+              <a href="#" v-for="(item,index) in tabs" :key="index" @click="selectTab(index,item.component)">
+                <div :class="{'tab':true,'active':item.active}">
+                {{item.title}}
+              </div></a>
+
+            </div>
+<!--            <details-component v-if="currentComponent == 'details-component'"></details-component>-->
+<!--            <login-component v-if="currentComponent == 'login-component'"></login-component>-->
+<!--            <classify-component v-if="currentComponent == 'classify-component'"></classify-component>-->
+            <keep-alive><comment :is="currentComponent"></comment></keep-alive>
+          </div>
         `
     });
 
