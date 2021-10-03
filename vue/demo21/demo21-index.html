@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态组件</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+        .tab-wrap{
+            width:100%;
+        }
+        .tab-wrap .tab, .main .classify-tab{
+            display: inline-block;
+            padding: 5px 10px;
+            border: 1px solid #EFEFEF;
+            margin-right:5px;
+            font-size:14px;
+        }
+        .tab-wrap a,.main a{
+            color:#000000;
+        }
+        .tab-wrap .tab.active, .main .classify-tab.active{
+            background-color: #0000FF;
+            color:#FFFFFF;
+        }
+        .main{
+            border:1px solid #EFEFEF;
+            padding:10px;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    // Vue.component('async-component',(resolve,reject)=>{
+    //     setTimeout(()=>{
+    //         let VipComponent = {
+    //             template:`
+    //                 <div>我是全局异步组件</div>
+    //             `
+    //         };
+    //         resolve(VipComponent);
+    //     },1000)
+    // });
+
+    let AsyncComponent = (resolve,reject)=>{
+        setTimeout(()=>{
+            resolve({
+                template:`
+                    <div>我是局部异步组件</div>
+                `
+            });
+        });
+    };
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+
+            }
+        },
+        components:{
+            AsyncComponent
+        },
+        template:`
+          <div>
+            <async-component></async-component>
+          </div>
+        `,
+        methods:{
+
+        }
+    });
+
+</script>
+</body>
+</html>
