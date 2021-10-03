@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件的递归</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+        
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let MyButton = {
+        template: `
+            <button type="button"><slot></slot></button>
+        `
+    }
+
+
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+
+            }
+        },
+        components:{
+            MyButton
+        },
+        template:`
+          <div>
+            <my-button>按钮</my-button>
+            <my-button type="submit">提交</my-button>
+            <my-button>再来一个</my-button>
+          </div>
+        `,
+        methods:{
+
+        }
+    });
+
+</script>
+</body>
+</html>
