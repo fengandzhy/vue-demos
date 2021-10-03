@@ -2,32 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>动态组件</title>
+    <title>异步递归</title>
     <style>
         [v-cloak]{
             display:none;
         }
-        .tab-wrap{
+        .tree-row{
             width:100%;
+            height: auto;
+            box-sizing: border-box;
+            border-top: 1px solid #EFEFEF;
+            border-bottom: 1px solid #EFEFEF;
+            font-size: 14px;
+            overflow: hidden;
+            padding-top:10px;
+            padding-bottom: 10px;
         }
-        .tab-wrap .tab, .main .classify-tab{
-            display: inline-block;
-            padding: 5px 10px;
-            border: 1px solid #EFEFEF;
-            margin-right:5px;
-            font-size:14px;
-        }
-        .tab-wrap a,.main a{
-            color:#000000;
-        }
-        .tab-wrap .tab.active, .main .classify-tab.active{
-            background-color: #0000FF;
-            color:#FFFFFF;
-        }
-        .main{
-            border:1px solid #EFEFEF;
-            padding:10px;
-        }
+
     </style>
 </head>
 <body>
@@ -36,39 +27,71 @@
 </div>
 <script src="../js/vue.js"></script>
 <script>
-    // Vue.component('async-component',(resolve,reject)=>{
-    //     setTimeout(()=>{
-    //         let VipComponent = {
-    //             template:`
-    //                 <div>我是全局异步组件</div>
-    //             `
-    //         };
-    //         resolve(VipComponent);
-    //     },1000)
-    // });
 
-    let AsyncComponent = (resolve,reject)=>{
-        setTimeout(()=>{
-            resolve({
-                template:`
-                    <div>我是局部异步组件</div>
-                `
-            });
-        });
-    };
+    let TreeComponent = {
+        name:'tree-component',
+        props:{
+            level:{
+                type:Number,
+                default:0
+            },
+            data:{
+                type:Array,
+                default: ()=>[]
+            }
+        },
+        template: `
+            <div>
+                <div class="tree-row" v-for="(item,index) in data" :key="index">
+                    <span :style="{'padding-left':level*20+'px'}">{{item.title}}</span>
+                    <tree-component :level="level+1"  :data="item.children" v-if="item.children && item.children.length>0"></tree-component>
+                </div>
+            </div>
+        `
+    }
+
     new Vue({
         el:'#app',
         data(){
             return{
+                classifies:[
+                    {
+                        title:'数码',
+                        children:[
+                            {
+                                title:'手机',
+                                children:[
+                                    {title:'华为手机'},
+                                    {title:'苹果手机'}
+                                ]
+                            },
+                            {
+                                title:'电脑',
+                                children:[
+                                    {title:'联想电脑'},
+                                    {title:'弘基电脑'}
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title:'家电',
+                        children: [
+                            {title:'大家电'},
+                            {title:'小家电'},
+                            {title:'家电服务'}
+                        ]
 
+                    }
+                ]
             }
         },
         components:{
-            AsyncComponent
+            TreeComponent
         },
         template:`
           <div>
-            <async-component></async-component>
+            <tree-component :data="this.classifies"></tree-component>
           </div>
         `,
         methods:{

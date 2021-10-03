@@ -1,10 +1,8 @@
 /**
- * 1. 全局的异步组件 Vue.component('async-component',(resolve,reject)=>{ }); 左边是组件名称, 右边是工厂函数.
+ * 1. component的递归的本质就是在原组件里调用自己
  *
- * 2. 对于一个全局的非异步组件 Vue.component('PublicComponent',Vue.extend({})); 左边是组件名称, 右边是一个对象.
- *
- * 3. 对于局部异步组件来说 let AsyncComponent = (resolve,reject)=>{}; =右边一个工厂函数来返回的.
- *
- * 4. 对于局部非异步组件来说 let ClassifyComponent = {} =右边直接是一个对象.
+ * 2. 组件之所以能在组件里调用自己是因为 这里的 name:'tree-component',起到了作用. 这里的name后面的东西一定要跟 组件调用自己的地方相同
+ * 例如如果这里  name:'tree-component1' 那么原组件里就应该是
+ *  <tree-component1 :level="level+1"  :data="item.children" v-if="item.children && item.children.length>0"></tree-component1>
  *
  * */
