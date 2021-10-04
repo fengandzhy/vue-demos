@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Js钩子</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+        .box{
+            width:100px;
+            height: 100px;
+            background-color: #0000FF;
+            font-size:14px;
+            color:#FFFFFF;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let AppComponent = {
+        data(){
+            return{
+               slides:[
+                   {id:1,img:'../image/banner1.jpg',isShow:true},
+                   {id:2,img:'../image/banner2.jpg',isShow:true},
+                   {id:3,img:'../image/banner3.jpg',isShow:true}
+               ]
+            }
+        },
+        template: `
+            <div>
+                <div class="swiper-main">
+                  <div class="swiper-wrap">
+                    <div class="slide" v-for="(item,index) in slides" :key="item:id"><img src="../image/banner1.jpg" alt=""></div>
+                    <div class="slide"><img src="../image/banner2.jpg" alt=""></div>
+                    <div class="slide"><img src="../image/banner3.jpg" alt=""></div>
+                  </div>
+                  <div class="page">
+                    <div class="item active"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                  </div>
+                </div>
+            </div>
+        `
+    }
+
+
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+
+            }
+        },
+        components:{
+            AppComponent
+        },
+        template:`
+          <div>
+            <app-component></app-component>
+          </div>
+        `,
+        methods:{
+
+        }
+    });
+
+</script>
+</body>
+</html>
