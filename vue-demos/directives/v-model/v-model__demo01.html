@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>v-model</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        div{
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div><input type="text" v-model="msg"/></div>
+        <div><textarea v-model="msg"></textarea></div>
+        <div>单个复选框绑定布尔值<input value="a" type="checkbox" v-model="isChecked"/>{{isChecked}}</div>
+        <div>单个复选框绑定字符串<input value="a" type="checkbox" v-model="msg"/>{{msg}}</div>
+        <div>单个复选框绑定对象<input value="a" type="checkbox" v-model="obj"/>{{obj}}</div>
+        <div>单个复选框绑定数组<input value="a" type="checkbox" v-model="data"/></div>
+        <div>
+            <input type="checkbox" value="basketball" v-model="hobbies"/>
+            <input type="checkbox" value="football" v-model="hobbies"/>
+            <input type="checkbox" value="volleyball" v-model="hobbies"/>
+        </div>
+        <span>Checked names:{{hobbies.length>0?hobbies.join(","):""}}</span><br/>
+        <span>Checked names:{{data.length>0?data.join(","):""}}</span><br/>
+        <div>
+            <label for="male">
+                <input type="radio" id="male" value="男" v-model="gender">男
+            </label>
+            <label for="female">
+                <input type="radio" id="female" value="女" v-model="gender">女
+            </label>
+            <span>{{gender}}</span>
+        </div>
+        <div>
+            <select v-model="selected">
+                <option value="" disabled>请选择</option>
+                <option value="羊肉串">羊肉串</option>
+                <option value="啤酒">啤酒</option>
+                <option value="烤馒头">烤馒头</option>
+            </select>
+            <span>Selected:{{selected}}</span><br/>
+            <select v-model="items" multiple>
+                <option value="足球">足球</option>
+                <option value="篮球">篮球</option>
+                <option value="排球">排球</option>
+            </select>
+            <span>Selected:{{items}}</span><br/>
+        </div>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                msg:'',
+                isChecked: true,
+                gender:'',
+                obj:{},
+                hobbies:[],
+                data:[],
+                selected:"",
+                items:[]
+            }
+        },
+        watch:{
+            msg(v1,v2){
+                console.log(typeof v1);
+                console.log(typeof v2);
+            },
+            obj(v1,v2){
+                console.log(typeof v1);
+                console.log(typeof v2);
+            }
+        }
+    });
+
+</script>
+</html>
