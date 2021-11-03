@@ -7,6 +7,9 @@
  *
  *  4. 如果写成@keyup.enter="enter()",那么方法中定义的这个参数e就不起作用了必须写成@keyup.enter="enter($event)" 或者@keyup.enter="enter"
  *
+ * 5. @click.stop 这个是防止事件冒泡的, 如果没有.stop 那么这个click就会传导到上一层.
+ *
+ * 6. @keyup.enter 这个是监听回车事件 .enter是回车键的别名
  *
  *
  * */
