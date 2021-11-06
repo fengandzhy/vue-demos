@@ -11,6 +11,10 @@
             <input type="text">
             <input type="submit">
         </form>
+        <form v-on:submit.prevent="submitHandler1($event)">
+            <input type="text">
+            <input type="submit">
+        </form>
     </div>
 </body>
 <script>
@@ -22,6 +26,10 @@
         methods:{
             submitHandler(){
                 console.log('提交页面');
+            },
+            submitHandler1(e){
+                console.log('提交页面');
+                e.preventDefault();
             }
         }
     })
