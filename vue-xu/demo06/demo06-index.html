@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>.prevent阻止默认事件</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <form v-on:submit.prevent="submitHandler">
+            <input type="text">
+            <input type="submit">
+        </form>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            picked: 'Two'
+        },
+        methods:{
+            submitHandler(){
+                console.log('提交页面');
+            }
+        }
+    })
+</script>
+</html>
