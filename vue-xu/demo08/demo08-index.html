@@ -2,19 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>.capture改变事件流</title>
+    <title>.self 和 .once 的修饰符</title>
     <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+        #div1{
+            background-color: blue;
+            height: 50px;
+        }
+        .divDefault{
+            background-color: red;
+            width: 200px;
+            height: 100px;
+        }
+    </style>
 </head>
 <body>
-    <div id="app">
-        <div @click="divClick">
+    <div id="app" class="divDefault">
+        <div id="div1" @click.self="divClick" >
             <button @click="btnClick">点击</button>
         </div>
-        <div @click="divClick">
-            <button @click.stop="btnClick">点击1</button>
-        </div>
-        <div @click.capture="divClick">
-            <button @click="btnClick">点击2</button>
+
+        <div @click="divClick" >
+            <button @click.once="btnClick">点击once</button>
         </div>
     </div>
 </body>
