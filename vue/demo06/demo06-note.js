@@ -11,5 +11,5 @@
  *
  * 6. @keyup.enter 这个是监听回车事件 .enter是回车键的别名
  *
- *
+ * 7. 包括这个 @click="hello('Hello World!')" 如果写成这样, 那么在hello方法里找不到事件参数, 必须写成 @click="hello('Hello World!',$event)"
  * */

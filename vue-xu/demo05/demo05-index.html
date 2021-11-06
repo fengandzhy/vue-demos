@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-model与radio的默认选择</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+        .div1{
+            height: 100px;
+            width: 100px;
+            border: green 1px solid;
+        }
+        .div2{
+            height: 100px;
+            width: 100px;
+            border: blue 1px solid;
+        }
+        .div3{
+            height: 100px;
+            width: 100px;
+            border: red 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="example-4">
+        <input type="radio" id="one" value="One" v-model="picked">
+        <label for="one">One</label>
+        <br>
+        <input type="radio" id="two" value="Two" v-model="picked">
+        <label for="two">Two</label>
+        <br>
+        <input type="radio" id="three" value="Three" v-model="picked">
+        <label for="two">Three</label>
+        <br>
+        <span>Picked: {{ picked }}</span>
+        <div class="div1" v-show="picked === 'One'">
+
+        </div>
+        <div class="div2" v-show="picked === 'Two'">
+
+        </div>
+        <div class="div3" v-show="picked === 'Three'">
+
+        </div>
+    </div>
+
+</body>
+<script>
+    new Vue({
+        el: '#example-4',
+        data: {
+            picked: 'Two'
+        },
+        methods:{
+            change(val){
+                alert(val);
+            }
+        }
+    })
+</script>
+</html>

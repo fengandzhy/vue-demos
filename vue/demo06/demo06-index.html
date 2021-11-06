@@ -20,7 +20,7 @@
 
     </div>
     <div>
-        <button type="button" @click="hello('Hello World!')">Hello World!</button>
+        <button type="button" @click="hello('Hello World!',$event)">Hello World!</button>
     </div>
     <div>
         姓名:<input type="text" @input="setName"/>{{name}}
@@ -49,8 +49,9 @@
             // hello(){
             //     alert('牛逼了');
             // },
-            hello(val){
+            hello(val,e){
                 alert(val);
+                console.log(e);
             },
 
             setName(e){
