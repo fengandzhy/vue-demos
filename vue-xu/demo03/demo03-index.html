@@ -4,11 +4,30 @@
     <meta charset="UTF-8">
     <title>v-bind标签</title>
     <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+        .class1{
+            color: greenyellow;
+        }
+        .class2{
+            font-size: 20px;
+        }
+        .fontmy{
+            color:red;
+            font-size: 20px;
+        }
+        .bgmy{
+            background-color: royalblue;
+        }
+    </style>
 </head>
 <body>
     <!--dom部分 View部分-->
     <div id="app">
         <img v-bind:src="url" v-bind:height="height" :width="width" :title="title+'欢迎您!'"/>
+        <a :href="'http://www.baidu.com'">百度</a>
+        <p :class="'class1'">周洪元</p>
+        <p :class="{class1:true,class2:true}">周洪元</p>
+        <p :class="{class1:false,class2:true}">周洪元</p>
     </div>
 </body>
 <script>
