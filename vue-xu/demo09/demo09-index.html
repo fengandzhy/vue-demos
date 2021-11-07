@@ -12,9 +12,11 @@
     <div id="app">
         <input type="text" @keydown="keyDown($event)">
         <input type="text" @keydown.enter="enterDown">
+        <input type="text" @keydown.sp="enterDown">
     </div>
 </body>
 <script>
+    Vue.config.keyCodes.sp=32;
     new Vue({
         el: '#app',
         data: {
