@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>keyCode 按键Code</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" @keydown="keyDown($event)">
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            picked: 'Two'
+        },
+        methods:{
+            keyDown(e){
+                console.log(e.keyCode);
+            }
+        }
+    })
+</script>
+</html>
