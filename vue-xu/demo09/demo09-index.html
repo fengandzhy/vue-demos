@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>keyCode 按键Code</title>
+    <title>keyCode 和按键修饰符 </title>
     <script src="../node_modules/vue/dist/vue.js"></script>
     <style>
 
@@ -11,6 +11,7 @@
 <body>
     <div id="app">
         <input type="text" @keydown="keyDown($event)">
+        <input type="text" @keydown.enter="enterDown">
     </div>
 </body>
 <script>
@@ -22,6 +23,9 @@
         methods:{
             keyDown(e){
                 console.log(e.keyCode);
+            },
+            enterDown(){
+                console.log('回车键触发的！');
             }
         }
     })
