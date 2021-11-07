@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>computed 属性</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="name">
+        {{reverseName}}
+    </div>
+</body>
+<script>
+    Vue.config.keyCodes.sp=32;
+    new Vue({
+        el: '#app',
+        data: {
+            name: ''
+        },
+        methods:{
+            click(){
+               console.log(this.name);
+            }
+        },
+        computed:{
+            reverseName(){
+                this.name.split("").reverse().join("");
+            }
+        }
+    })
+</script>
+</html>
