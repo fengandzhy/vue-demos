@@ -19,7 +19,7 @@
 </body>
 <script>
     Vue.config.keyCodes.sp=32;
-    new Vue({
+    var vm = new Vue({
         el: '#app',
         data: {
             name: '',
@@ -47,5 +47,8 @@
             }
         }
     })
+    vm.$watch('User',(val)=>{
+        console.log(val);
+    },{deep:true})
 </script>
 </html>
