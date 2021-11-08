@@ -94,9 +94,9 @@
                 console.log("监听某一个属性更新后:"+newValue);
             },
             classifies:{
-                handler(val){
+                handler(val,val1){
                     console.log(JSON.stringify(val));
-                    console.log('aaaa');
+                    console.log(JSON.stringify(val1));
                 },
                 deep:true
             }

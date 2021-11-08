@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>computed 属性</title>
+    <title>watch 监听</title>
     <script src="../node_modules/vue/dist/vue.js"></script>
     <style>
 
@@ -11,6 +11,10 @@
 <body>
     <div id="app">
         <input type="text" v-model="name">
+        <input type="text" v-model="msg">
+        <br/>
+        <input type="text" v-model="User.name">
+        <input type="text" v-model="User.gender">
     </div>
 </body>
 <script>
@@ -18,11 +22,28 @@
     new Vue({
         el: '#app',
         data: {
-            name: ''
+            name: '',
+            msg: '',
+            User: {
+                name: 'zhangsan',
+                gender: 'male'
+            }
+        },
+        methods:{
+            updateMsg(newValue,oldValue){
+                console.log(newValue,oldValue);
+            }
         },
         watch: {
             name:function(newValue,oldValue){
                 console.log(newValue,oldValue);
+            },
+            msg: 'updateMsg',
+            'User': {
+                handler: function(newValue,oldValue){
+                    console.log(newValue,oldValue);
+                },
+                deep: true
             }
         }
     })
