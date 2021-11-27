@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生命周期destroy & beforeDestroy</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3 id="h3">{{msg}}</h3>
+        <button @click="updateMessage">click me</button>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        data: {
+            msg:'欢迎来到小豆子学堂'
+        },
+        methods: {
+            updateMessage(){
+                this.msg = '欢迎您';
+            }
+        },
+        beforeDestroy(){
+            console.log(`Vue实例挂载对象el:${this.$el}`);
+            console.log(`Vue实例的data对象:${this.$data}`);
+            console.log(`Vue实例的msg对象:${this.msg}`);
+            console.log(`Vue实例的methods对象:${this.$options.method}`);
+            this.updateMessage();
+        },
+        destroyed(){
+            console.log(`Vue实例挂载对象el:${this.$el}`);
+            console.log(`Vue实例的data对象:${this.$data}`);
+            console.log(`Vue实例的msg对象:${this.msg}`);
+            console.log(`Vue实例的methods对象:${this.$options.method}`);
+            this.updateMessage();
+        }
+    }).$mount('#app');
+    vm.$destroy();
+</script>
+</html>
