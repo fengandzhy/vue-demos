@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生命周期beforeUpdated</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3 id="h3">{{msg}}</h3>
+        <button @click="updateMessage">click me</button>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg:'欢迎来到小豆子学堂'
+        },
+        methods: {
+            updateMessage(){
+                this.msg = '欢迎您';
+            }
+        },
+        beforeUpdate(){
+            console.log(`页面上的数据:${document.getElementById('h3').innerText}`);
+            console.log(`data中的msg数据:${this.msg}`);
+        }
+    });
+</script>
+</html>
