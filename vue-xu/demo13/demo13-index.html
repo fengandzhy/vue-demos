@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生命周期</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <br>
+        <button @click="update">更新数据</button>
+        <!-- 组件销毁之后再单击【更新组件】就没有用了 -->
+        <button @click="destroy">销毁组件</button>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg:'欢迎来到小豆子学堂'
+        },
+        methods: {
+            update(){
+                this.msg="welcome to xdz"
+            },
+            destroy(){
+                this.$destroy()
+            }
+        },
+        //所有钩子函数都是vue实例的一个选项
+        beforeCreate(){
+            alert('组件实例刚刚被创建，还未进行数据的观测和事件配置')
+        },
+        created(){
+            alert('实例已经创建完成，并且已经进行数据观测和事件配置')
+        },
+        beforeMount(){
+            alert('模板编译之前，还未挂载')
+        },
+        mounted(){
+            alert('模板编译之后，已经挂载，此时才会渲染页面，才能看到页面上数据的展示')
+        },
+        beforeUpdate(){
+            alert('数据更新之前')
+        },
+        updated(){
+            alert('数据更新之后')
+        },
+        beforeDestroy(){
+            alert('组件销毁之前')
+        },
+        destroyed(){
+            alert('组件销毁之后')
+        }
+        //上面钩子函数的执行顺序与书写位置顺序没有关系
+    });
+</script>
+</html>
