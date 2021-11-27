@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>本地存储</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <input type="text" v-model="msg" @keyup="storeMsg"></br>
+        {{msg1}}
+        <input type="text" v-model="msg1"></br>
+        {{msg2}}
+        <input type="text" v-model="msg2">
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        data: {
+            msg:localStorage.getItem('msg'),
+            msg1:localStorage.getItem('msg1'),
+            msg2: ''
+        },
+        mounted(){
+            this.msg2 = localStorage.getItem('msg2');
+        },
+        watch: {
+            msg1(){
+                localStorage.setItem('msg1',this.msg1)
+            },
+            msg2(){
+                localStorage.setItem('msg2',this.msg2)
+            }
+        },
+        methods: {
+            storeMsg(){
+                localStorage.setItem('msg',this.msg);
+            }
+        }
+    }).$mount('#app');
+
+</script>
+</html>
