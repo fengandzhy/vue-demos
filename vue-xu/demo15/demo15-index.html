@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生命周期created</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg:'欢迎来到小豆子学堂'
+        },
+        methods: {
+            show(){
+                console.log('执行了show函数');
+            }
+        },
+        created(){
+            console.log(`Vue实例挂载对象el:${this.$el}`);
+            console.log(`Vue实例的data对象:${this.$data}`);
+            console.log(`Vue实例的msg对象:${this.msg}`);
+            console.log(`Vue实例的methods对象:${this.$options.method}`);
+            this.show();
+        }
+    });
+</script>
+</html>
