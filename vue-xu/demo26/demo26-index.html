@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>vm.$set() 和 vm.$delete() </title>
+    <title>自定义指令</title>
     <script src="../node_modules/vue/dist/vue.js"></script>
     <style>
     </style>
@@ -10,6 +10,7 @@
 <body>
     <div id="app">
         <h3 v-my-dir>{{msg}}</h3>
+        <h3 v-red-text:txt="msg"></h3>
     </div>
 </body>
 <script>
@@ -30,9 +31,31 @@
             alert(`指令与元素解绑时调用，只会调用一次.`);
         }
     });
+    Vue.directive('red-text',{
+        /**
+         *  el 表示指令绑定的 dom 元素，上面例子即为 h3
+         *  第二个参数 binding 为一个对象,包含一些属性，比如 name（指令名，不包括 v- 前缀）,value（指令的绑定到的值）,
+         *  expression（字符串形式的指令表达式）,arg：传给指令的参数
+         *
+         *
+         * */
+        inserted(el,binding){
+            console.log(el);
+            console.log(binding);
+            console.log(binding.name);
+            console.log(binding.value);
+            console.log(binding.expression);
+            console.log(binding.arg);
+            el.innerHTML = binding.value.charAt(0).toUpperCase().concat(binding.value.slice(1));
+            // console.log(binding.value.charAt(0).toUpperCase().concat(binding.value.slice(1)));
+            // el.innerHTML=binding.value.charAt(0).toUpperCase()
+            //     +binding.value.slice(1);
+            el.style.color='red';
+        }
+    });
     var vm = new Vue({
         data: {
-            msg:'Welcome to Vue'
+            msg:'welcome to Vue'
         }
     }).$mount('#app');
 </script>
