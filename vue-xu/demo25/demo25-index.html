@@ -12,6 +12,7 @@
     <div id="app">
         <button @click="updateName">修改属性</button>
         <button @click="addAge">添加属性</button>
+        <button @click="delAge">删除属性</button>
         <h5 ref="hello">{{user.name}}</h5>
         <h5 ref="hello">{{user.age}}</h5>
     </div>
@@ -32,6 +33,9 @@
             addAge(){
                 // this.user.age = 22;
                 this.$set(this.user,'age',22);
+            },
+            delAge(){
+                this.$delete(this.user,'age'); //删除user的age属性
             }
         }
 
