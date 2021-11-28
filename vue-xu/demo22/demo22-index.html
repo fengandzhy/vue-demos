@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vm.$el 和 vm.$data </title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg:'Welcome to Vue'
+        },
+        // method: {
+        //     storeMsg(){
+        //         console.log('Welcome to Vue!');
+        //     }
+        // }
+    });
+    console.log(vm.$el);
+    vm.$el.style.color='red';
+    vm.$el.style.backgroundColor = 'green';
+    console.log(vm.$data);
+    // console.log(vm.$method);
+</script>
+</html>
