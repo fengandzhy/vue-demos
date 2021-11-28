@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vm.$options 和 vm.$ref </title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <h2 ref="hello">你好</h2>
+        <p ref="world">欢迎</p>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg:'Welcome to Vue'
+        },
+        methods: {
+            storeMsg(){
+                console.log('Welcome to Vue!');
+            }
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        name: 'ZhangSan',
+        age: 28,
+        show(){
+            console.log('这是自定义方法');
+        }
+    });
+    console.log(vm.$options.methods);
+    vm.$options.methods.storeMsg();
+    console.log(vm.$options.name);
+    vm.$options.show();
+    console.log(vm.$refs.hello);
+    vm.$refs.hello.style.color='blue';
+</script>
+</html>
