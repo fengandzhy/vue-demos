@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vm.$set() 和 vm.$delete() </title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="updateName">修改属性</button>
+        <button @click="addAge">添加属性</button>
+        <h5 ref="hello">{{user.name}}</h5>
+        <h5 ref="hello">{{user.age}}</h5>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+
+        data: {
+            user:{
+                id:'1001',
+                name:'Sam'
+            }
+        },
+        methods:{
+            updateName(){
+                this.user.name = 'Frank';
+            },
+            addAge(){
+                // this.user.age = 22;
+                this.$set(this.user,'age',22);
+            }
+        }
+
+    }).$mount('#app');
+    console.log(vm);
+    console.log(vm.user);
+    console.log(vm.user.name);
+    console.log(vm.user.age);
+</script>
+</html>
