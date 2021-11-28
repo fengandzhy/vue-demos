@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vm.$mount 和 vm.$nextTick </title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2 ref="hello">{{msg}}</h2>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+
+        data: {
+            msg:'Welcome to Vue'
+        }
+
+    }).$mount('#app');
+    vm.msg = 'Hello World';
+    vm.$nextTick(()=>{
+        console.log(vm.$refs.hello.textContent);
+    });
+</script>
+</html>
