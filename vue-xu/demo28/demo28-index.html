@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义局部指令</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-my-focus>
+    </div>
+</body>
+<script>
+
+    var vm = new Vue({
+        data: {
+            msg:'welcome to Vue'
+        },
+        directives: {
+            'my-focus': { //注意：指令名不能有大写字母
+                inserted(el) {
+                    el.focus();
+                }
+            }
+        }
+    }).$mount('#app');
+</script>
+</html>
