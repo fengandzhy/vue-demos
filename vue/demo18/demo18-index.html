@@ -18,7 +18,9 @@
 <script>
     let InputComponent = {
         template:`
+          <div>
             <input type='text' v-model='currentVal'/>
+          </div>
         `,
         props:{
             value:{
@@ -31,7 +33,9 @@
                     return this.value
                 },
                 set(val){
-                    this.$emit('input',val);
+                    // this.$emit('input',val);
+                    this.value = val;
+                    // console.log('value',this.currentVal);
                 }
             }
         }
