@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animation指定动画效果</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+        p{
+            height: 100px;
+            width:100px;
+            background-color: greenyellow;
+        }
+
+        /* 这里用animation来指定运动效果, 之前是transition
+           bounce-in是什么由下面来定义
+        */
+        .fade-enter-active {
+            animation: bounce-in 1s;
+        }
+
+        .fade-leave-active {
+            animation: bounce-in 3s reverse;
+        }
+        /*bounce-in究竟是个什么运动内容由下面来定义*/
+        @keyframes bounce-in {
+            0% { /*持续时间的百分比，如上面设定为 1s，则 0%就表示 0
+秒的时候，50%就表示 0.5 秒时候，100%就表示 1 秒的时候 */
+                /*transform: scale(0); !* 缩小为 0 *!*/
+                opacity:0;
+                width:50px;
+                height:50px;
+            }
+            50% {
+                /*transform: scale(1.5);!* 放大到 1.5 倍 *!*/
+                opacity:1;
+                width:200px;
+                height:200px;
+            }
+            100% {
+                /*transform: scale(1);!* 原始大小 *!*/
+                height: 100px;
+                width:100px;
+                background-color: blue;
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="flag=!flag">Click me</button>
+        <transition name="fade">
+            <p v-show="flag" class="p"></p>
+        </transition>
+    </div>
+</body>
+<script>
+
+    const vm = new Vue({
+        data: {
+            flag:false
+        },
+        //el，表示应用动画的元素
+        // methods: {
+        //     afterEnter(el){
+        //         el.style.backgroundColor='blue';
+        //     },
+        //     afterLeave(el){
+        //         el.style.backgroundColor='greenyellow';
+        //     }
+        // }
+    }).$mount('#app');
+</script>
+</html>
