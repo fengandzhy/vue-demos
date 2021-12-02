@@ -2,28 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>自定义局部指令</title>
+    <title>过渡效果的实现</title>
     <script src="../node_modules/vue/dist/vue.js"></script>
     <style>
+        p{
+            height: 100px;
+            width:100px;
+            background-color: greenyellow;
+        }
+        .fade-enter-active,.fade-leave-active{
+            transition:all 2s ease;
+        }
+        .fade-enter-active{
+            opacity:1;
+            width:200px;
+            height:200px;
+        }
+        .fade-leave-active{
+            opacity:0;/* 为 0 即为隐藏 */
+            width:0px;
+            height:0px;
+        }
+        .fade-enter,.fade-leave-to{
+            opacity:0;
+            width:50px;
+            height:50px;
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <input type="text" v-my-focus>
+        <button @click="flag=!flag">Click me</button>
+        <transition name="fade">
+            <p v-show="flag" class="p"></p>
+        </transition>
     </div>
 </body>
 <script>
 
     var vm = new Vue({
         data: {
-            msg:'welcome to Vue'
-        },
-        directives: {
-            'my-focus': { //注意：指令名不能有大写字母
-                inserted(el) {
-                    el.focus();
-                }
-            }
+            flag:false
         }
     }).$mount('#app');
 </script>
