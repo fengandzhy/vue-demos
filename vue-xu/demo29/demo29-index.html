@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在动画效果中的钩子函数</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+        p{
+            height: 100px;
+            width:100px;
+            background-color: greenyellow;
+        }
+        /* 设置动画的进入和离开时共同效果.如果 transition 组件没有设置 name 属性，此处就是以 v-前缀 */
+        .fade-enter-active,.fade-leave-active{
+            /* transition 是设置过渡的属性。all 指的是所有属性都赋予过渡效果，过渡时间延续 2s，ease 表示过渡类型是平滑过渡 */
+            transition:all 2s ease;
+        }
+        /* 1.单独设置进入过程的过度效果 */
+        .fade-enter-active{
+            opacity:1;
+            width:200px;
+            height:200px;
+        }
+        /* 2.单独设置离开过程的过度效果 */
+        .fade-leave-active{
+            opacity:0;/* 为 0 即为隐藏 */
+            width:0;
+            height:0;
+        }
+        /* 3.进入刚开始的状态效果和离开之后的效果  这个必须放在最后*/
+        .fade-enter,.fade-leave-to{
+            opacity:0;
+            width:50px;
+            height:50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="flag=!flag">Click me</button>
+        <transition name="fade"
+                    @before-enter="beforeEnter"
+                    @enter="enter"
+                    @after-enter="afterEnter"
+                    @before-leave="beforeLeave"
+                    @leave="leave"
+                    @after-leave="afterLeave">
+            <p v-show="flag" class="p"></p>
+        </transition>
+    </div>
+</body>
+<script>
+
+    const vm = new Vue({
+        data: {
+            flag:false
+        },
+        methods: {
+            beforeEnter(){
+                alert('动画进入之前');
+            },
+            enter(){
+                alert('动画进入');
+            },
+            afterEnter(){
+                alert('动画进入之后');
+            },
+            beforeLeave(){
+                alert('动画离开之前');
+            },
+            leave(){
+                alert('动画离开');
+            },
+            afterLeave(){
+                alert('动画离开之后');
+            }
+        }
+    }).$mount('#app');
+</script>
+</html>
