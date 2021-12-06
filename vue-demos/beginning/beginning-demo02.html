@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>beginning-demo02</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+</head>
+<body>
+    <div id="app">{{msg}}
+        <h2>{{name}}</h2>
+        <h2>{{name}}</h2>
+    </div>
+    <h2>{{name}}</h2>
+    <h2>{{name}}</h2>
+</body>
+<script>
+    let obj = {
+        name:'李四',
+        age: 18
+    }
+    const vue = new Vue({
+        el:'#app',
+        data:{
+            msg:{
+                name:'张三',
+                age: 18
+            },
+            stu:obj,
+            name:'Hello Vue'
+        }
+    });
+    vue.stu.name='王五';
+    console.log(vue.stu);
+</script>
+</html>
