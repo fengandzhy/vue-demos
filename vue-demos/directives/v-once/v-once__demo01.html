@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-once</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p><span>{{link}}</span></p>
+        <p><span v-once>{{link}}</span></p>
+        <p><span v-once="link"></span></p>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                link:'http://www.lucklnk.com'
+            }
+        }
+    });
+    vue.link="http://www.baidu.com";
+    vue.$data.link="http://www.qq.com";
+</script>
+</html>
