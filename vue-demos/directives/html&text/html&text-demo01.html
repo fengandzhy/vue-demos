@@ -6,6 +6,33 @@
     <script src="../../js/vue.js"></script>
 </head>
 <body>
-
+    <div id="app">
+        <p></p><span v-html="link"></span></p>
+        <p><span v-text="msg"></span></p>
+        <p><span>{{msg}}</span></p>
+        <p><span v-text="msg">-----------</span></p>
+        <p><span>--------{{msg}}---------</span></p>
+        <p><span v-text="link"></span></p>
+        <p><pre>
+            <span>{{link}}</span>
+        </pre></p>
+        <p><span>{{info}}</span></p>
+        <p><pre>
+            <span>{{info}}</span>
+        </pre></p>
+        <p></p><span v-html="info"></span></p>
+    </div>
 </body>
+<script>
+    let dataModel={
+        msg:'Hello World',
+        link:'<a href="http://www.baidu.com">百度</a>',
+        info:'aaa\nbbb\ncccc\nddddd'
+    }
+    const vm = new Vue({
+        el:'#app',
+        data:dataModel
+    });
+
+</script>
 </html>
