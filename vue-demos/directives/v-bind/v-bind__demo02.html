@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bind</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 通过 v-bind 绑定属性 src，属性就是 html 属性的，只不过是前面加了一个前缀 v-bind ，
+        这样就可以直接访问 vue 中的数据，而且不需要使用{{}}-->
+        <p><img :src="url" :width="width" :height="height" :tilte="title"/></p>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                url:'../../img/aa.jpg',
+                width:'100px',
+                height:'100px',
+                title:'欢迎您'
+            }
+        }
+    });
+
+</script>
+</html>
