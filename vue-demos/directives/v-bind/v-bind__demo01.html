@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bind</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p><a v-bind:href="link">程序思维 </a></p>
+        <p><a :href="link">程序思维 </a></p>
+        <p><a :[attr_href]="link">程序思维 </a></p>
+<!--        <p><img :src="https//://img2.baidu.com/it/u=3666548066,2508071679&fm=26&fmt=auto"/></p>-->
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                link:'http://www.lucklnk.com',
+                attr_href:'href'
+            }
+        }
+    });
+
+</script>
+</html>
