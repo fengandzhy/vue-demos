@@ -8,7 +8,12 @@
 <body>
     <div id="app">{{msg}}
         <h2>{{name}}</h2>
-        <h2>{{name}}</h2>
+        <h2>{{name.toLowerCase()}}</h2>
+        <h2>{{name.concat(value)}}</h2>
+        <h2>{{name.repeat(3)}}</h2>
+        <h2>{{name.substr(0,3)}}</h2>
+        <h2>{{msg.age+stu.age}}</h2>
+        <h2>{{isShow?'显示':'隐藏'}}</h2>
     </div>
     <h2>{{name}}</h2>
     <h2>{{name}}</h2>
@@ -26,7 +31,9 @@
                 age: 18
             },
             stu:obj,
-            name:'Hello Vue'
+            name:'Hello Vue ',
+            value:'Welcome to Vue',
+            isShow:true
         }
     });
     vue.stu.name='王五';
