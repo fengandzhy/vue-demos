@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--
+            通过指定:key 属性为每个元素绑定一个唯一的 key,其优势是当更新元素时可重用元素提高效率
+            也就是说假设数组 list 元素值发生变化时，如果没有:key 属性，那么会把 list 所有值先删除再重新插入。
+            有 key 的话就会重用 原有元素，也就是在原先基础上修改
+        -->
+        <div v-for="(item,index) in list" :key="item.id">
+            <div><label><input type="checkbox"/> {{item.title}}</label>{{index}}</div>
+        </div>
+        <button @click="add()">添加</button>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                list:[
+                    {id:1, title:'羊肉串', price:2},
+                    {id:2, title:'啤酒', price:4},
+                    {id:3, title:'花毛一体', price:10}
+                ],
+            }
+        },
+        methods:{
+            add(){
+                this.list.unshift({title:'酱牛肉', price:12});
+            }
+        }
+    });
+
+
+</script>
+</html>
