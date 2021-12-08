@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bind</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .fontMy{
+            color:red;
+            font-size:20px;
+        }
+
+        .bgMy{
+            background-color: royalblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <p class="fontMy">ZhouHongYuan</p>
+        <p :class="'fontMy'">ZhouHongYuan</p>
+        <p :class="{'fontMy':true}">ZhouHongYuan</p>
+        <p :class="{fontMy:flag}">ZhouHongYuan</p>
+        <p :class="font">ZhouHongYuan</p>
+        <p :class="[font,bg]">ZhouHongYuan</p>
+        <p :class="classNames">ZhouHongYuan</p>
+        <p :style="myStyle1">ZhouHongYuan</p>
+        <p :style="[myStyle1,myStyle2]">ZhouHongYuan</p>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return {
+                font:'fontMy',
+                bg:'bgMy',
+                flag:true,
+                classNames: {
+                    fontMy:true,
+                    bgMy:true
+                },
+                myStyle1: {
+                    color:'blue',
+                    fontSize:'30px' //注意这里要驼峰命名法, 不能写成font-size
+                },
+                myStyle2: {
+                    color:'blue',
+                    backgroundColor:'#ccc'//注意这里要驼峰命名法, 不能写成background-color
+                }
+            }
+        }
+    });
+
+</script>
+</html>

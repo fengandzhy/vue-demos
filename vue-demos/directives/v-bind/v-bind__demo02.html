@@ -11,10 +11,13 @@
     </style>
 </head>
 <body>
-    <div id="app">
+    <div id="app" v-cloak>
         <!-- 通过 v-bind 绑定属性 src，属性就是 html 属性的，只不过是前面加了一个前缀 v-bind ，
         这样就可以直接访问 vue 中的数据，而且不需要使用{{}}-->
         <p><img :src="url" :width="width" :height="height" :tilte="title"/></p>
+
+        <!--对于绑定的内容，是做为一个 js 变量，可以对该内容进行编写合法的 js 表达式-->
+        <p><img :src="url" :width="w+'px'" :height="h+'px'" :tilte="title"/></p>
     </div>
 </body>
 <script>
@@ -25,7 +28,9 @@
                 url:'../../img/aa.jpg',
                 width:'100px',
                 height:'100px',
-                title:'欢迎您'
+                title:'欢迎您',
+                w:100,
+                h:100
             }
         }
     });
