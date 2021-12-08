@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in list">
+                {{index+1}}菜品:{{item.title}}, 价格{{item.price}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                list:[
+                    {title:'羊肉串', price:2},
+                    {title:'啤酒', price:4},
+                    {title:'花毛一体', price:10}
+                ],
+            }
+        }
+    });
+
+    /** set第一个参数：要更新的数据源，对象或是数组
+        第二个参数：key或是索引, 对于对象来说就是key, 对于数组来说就是索引
+        第三个参数：要赋的值
+     */
+    vue.$set(vue.$data.list,1, {title:'哈尔滨啤酒', price:6});
+
+    vue.$data.list[2].price = 12;
+    vue.$data.list[2].title='酱牛肉';
+
+    // 这里确保了上面已经更改过的vue.$data.list[2] 渲染上去
+    vue.$set(vue.$data.list,2, vue.$data.list[2]);
+</script>
+</html>
