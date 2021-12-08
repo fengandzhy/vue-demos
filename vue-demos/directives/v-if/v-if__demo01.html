@@ -12,9 +12,33 @@
 </head>
 <body>
     <div id="app">
-        <p><a v-bind:href="link">程序思维 </a></p>
-        <p><a :href="link">程序思维 </a></p>
-        <p><a :[attr_href]="link">程序思维 </a></p>
+        <template v-if="true">
+            <div>生成</div>
+            <div>删除</div>
+            <div>年龄</div>
+        </template>
+        <hr>
+        <div v-if="isVip">
+            VIP会员
+        </div>
+        <div v-else>
+            普通会员
+        </div>
+        <div v-if="grade>=90">
+            优异
+        </div>
+        <div v-else-if="grade>=80&&grade<90">
+            良好
+        </div>
+        <div v-else-if="grade>=70&&grade<80">
+            中等
+        </div>
+        <div v-else-if="grade>=60&&grade<70">
+            及格
+        </div>
+        <div v-else="grade<60">
+            不及格
+        </div>
     </div>
 </body>
 <script>
@@ -22,8 +46,8 @@
         el:'#app',
         data(){
             return{
-                link:'http://www.lucklnk.com',
-                attr_href:'href'
+                isVip:true,
+                grade:78
             }
         }
     });
