@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-show</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div v-show="isVip" >
+            显示
+        </div>
+        <div v-show="!isVip" >
+            隐藏
+        </div>
+        <button @click="isVip=!isVip">显示\隐藏</button>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                isVip:true,
+                grade:78
+            }
+        }
+    });
+
+</script>
+</html>
