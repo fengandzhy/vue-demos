@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <div v-if="loginType==1" >
+            手机号:<input type="text">
+        </div>
+        <div v-else="loginType==0" >
+            邮箱:<input type="text">
+        </div>
+        <button @click="loginType=loginType==1?0:1">切换登录方式</button>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                loginType:1
+            }
+        }
+    });
+
+</script>
+</html>
