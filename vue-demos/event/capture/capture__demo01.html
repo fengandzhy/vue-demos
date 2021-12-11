@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>capture</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .div {
+            height: 100px;
+            width: 100px;
+            border: 1px solid red;
+        }
+        .outDiv{
+            height: 200px;
+            width: 200px;
+            padding:2px;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <div class="outDiv" @click.capture="outDivClickHandler">
+            <div class="div" @click="divClickHandler">
+                <button @click="btnClickHandler()">click me</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+
+            }
+        },
+        methods:{
+            outDivClickHandler(){
+                console.log('This is out div event!');
+            },
+            divClickHandler(){
+                console.log('This is div event!');
+            },
+            btnClickHandler(){
+                console.log('This is btn event!');
+            }
+        }
+    });
+
+</script>
+</html>
