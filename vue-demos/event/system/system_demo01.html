@@ -16,6 +16,7 @@
 <body>
     <div id="app" v-cloak>
         <button type="button" @click.meta="doSomething()">Do something</button>
+        <button type="button" @click.alt="onClick">A</button>
     </div>
 </body>
 <script>
@@ -30,6 +31,9 @@
         methods:{
             doSomething(){
                alert('do something!');
+            },
+            onClick(){
+                alert('A');
             }
         }
     });
