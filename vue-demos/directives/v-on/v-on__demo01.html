@@ -19,24 +19,35 @@
 <body>
     <div id="app">
         <div><button v-on:click="clickWithNoParameter">clickWithNoParameter1</button></div>
-        <div><button v-on:click="clickWithNoParameter()">clickWithNoParameter2</button></div>
-        <div><button @click="clickWithNoParameter">clickWithNoParameter3</button></div>
+        <div><button @click="clickWithNoParameter()">clickWithNoParameter2</button></div>
+
         <div><button @click="clickWithEvent">clickWithEvent1</button></div>
         <div><button @click="clickWithEvent()">clickWithEvent2</button></div>
+        <div><button @click="clickWithEvent($event)">clickWithEvent3</button></div>
+
+
         <div><button @click="clickWithStringParameter('e')">clickWithStringParameter1</button></div>
         <div><button @click='clickWithStringParameter("\"e\"")'>clickWithStringParameter2</button></div>
         <div><button @click="clickWithStringParameter('\'e\'')">clickWithStringParameter3</button></div>
         <div><button @click=clickWithStringParameter("\"a\"")>clickWithStringParameter4</button></div>
+        <div><button @click=clickWithStringParameter(4)>clickWithNumberParameter1</button></div>
+
         <div><button @click="clickWithStringParameterAndEvent('e')">clickWithStringParameterAndEvent1</button></div>
         <div><button @click="clickWithStringParameterAndEvent('e',$event)">clickWithStringParameterAndEvent2</button></div>
+
         <div><button @click="clickWithObjectParameter(arr)">clickWithObjectParameter1</button></div>
         <div><button @click='clickWithObjectParameter(stu)'>clickWithObjectParameter2</button></div>
+<!--        <div><button @click='clickWithObjectParameter(student)'>clickWithObjectParameter3</button></div>-->
+
         <div><button @click="clickWithJsonParameter1('{name:\'Sam\',age:18}')">clickWithJsonParameter1</button></div>
         <div><button @click=clickWithJsonParameter2('{"name":"Sam","age":18}')>clickWithJsonParameter2</button></div>
-
     </div>
 </body>
 <script>
+    // const student={
+    //     name:'Frank',
+    //     age:19
+    // }
     const vue = new Vue({
         el:'#app',
         data(){
@@ -56,7 +67,7 @@
                 console.log(e);
             },
             clickWithStringParameter(e){
-                console.log(e);
+                console.log( typeof e);
             },
             clickWithStringParameterAndEvent(e,b){
                 console.log(e);
