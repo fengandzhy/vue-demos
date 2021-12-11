@@ -16,7 +16,13 @@
 <body>
     <div id="app" v-cloak>
         <button type="button" @click.meta="doSomething()">Do something</button>
+        <!--Alt或Shift同时按下也可以触发-->
         <button type="button" @click.alt="onClick">A</button>
+        <!--只能按下Alt才可以触发-->
+        <button type="button" @click.alt.exact="onClick">A</button>
+
+        <!--没有任何系统修饰符被按下时才触发-->
+        <button type="button" @click.exact="onClick">A</button>
         <input type="text" @keyup.alt.c="sayHello">
         <input type="text" @keydown.alt.c="sayHello">
     </div>
