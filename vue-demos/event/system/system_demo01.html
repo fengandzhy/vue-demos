@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>once</title>
+    <title>system</title>
     <script src="../../js/vue.js"></script>
     <style>
         [v-cloak]{
@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="app" v-cloak>
-        <button @click.once="btnClickHandler()">click me</button>
+        <button type="button" @click.meta="doSomething()">Do something</button>
     </div>
 </body>
 <script>
@@ -28,8 +28,8 @@
             }
         },
         methods:{
-            btnClickHandler(){
-                console.log('This is btn event!');
+            doSomething(){
+               alert('do something!');
             }
         }
     });

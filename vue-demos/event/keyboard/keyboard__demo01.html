@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>once</title>
+    <title>keyboard</title>
     <script src="../../js/vue.js"></script>
     <style>
         [v-cloak]{
@@ -15,7 +15,11 @@
 </head>
 <body>
     <div id="app" v-cloak>
-        <button @click.once="btnClickHandler()">click me</button>
+            <form>
+                <input type="text" name="username" @keydown.enter="submitToBackend"/><br>
+                <input type="text" name="username" @keydown="showKeyCode($event)"/>
+            </form>
+        </div>
     </div>
 </body>
 <script>
@@ -28,8 +32,11 @@
             }
         },
         methods:{
-            btnClickHandler(){
-                console.log('This is btn event!');
+            submitToBackend(){
+               alert('数据成功提交后台！');
+            },
+            showKeyCode(e){
+                alert(e.keyCode);
             }
         }
     });

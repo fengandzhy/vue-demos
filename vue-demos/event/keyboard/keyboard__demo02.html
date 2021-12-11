@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>once</title>
+    <title>keyboard</title>
     <script src="../../js/vue.js"></script>
     <style>
         [v-cloak]{
@@ -15,10 +15,15 @@
 </head>
 <body>
     <div id="app" v-cloak>
-        <button @click.once="btnClickHandler()">click me</button>
+            <form>
+                <input type="text" @keyup.alt1="sayHello">
+            </form>
+        </div>
     </div>
 </body>
 <script>
+
+    Vue.config.keyCodes.alt1 = 18;
 
     const vue = new Vue({
         el:'#app',
@@ -28,8 +33,8 @@
             }
         },
         methods:{
-            btnClickHandler(){
-                console.log('This is btn event!');
+            sayHello(){
+               alert('Hello world!');
             }
         }
     });
