@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>v-for</title>
+    <title>v-on</title>
     <script src="../../js/vue.js"></script>
     <style>
         [v-cloak]{
@@ -37,17 +37,14 @@
 
         <div><button @click="clickWithObjectParameter(arr)">clickWithObjectParameter1</button></div>
         <div><button @click='clickWithObjectParameter(stu)'>clickWithObjectParameter2</button></div>
-<!--        <div><button @click='clickWithObjectParameter(student)'>clickWithObjectParameter3</button></div>-->
+
 
         <div><button @click="clickWithJsonParameter1('{name:\'Sam\',age:18}')">clickWithJsonParameter1</button></div>
         <div><button @click=clickWithJsonParameter2('{"name":"Sam","age":18}')>clickWithJsonParameter2</button></div>
     </div>
 </body>
 <script>
-    // const student={
-    //     name:'Frank',
-    //     age:19
-    // }
+
     const vue = new Vue({
         el:'#app',
         data(){
