@@ -18,18 +18,12 @@
 </head>
 <body>
     <div id="app">
-        <label>
-            <input type="checkbox" v-model="toggle" true-value="yes" false-value="no">
-        </label>
-        {{toggle}}<br/>
-        <label>
-            <select v-model="selected">
-                <option value="" disabled>请选择</option>
-                <option :value="item" v-for="(item,index) in list" :key="index">{{item.title}}</option>
-            </select>
-        </label>
-        <span>选中的值：{{selected.title}}，价格：{{selected.price}}</span>
-
+        <div><input type="text" v-model.lazy="msg"/>{{msg}}</div>
+        <div><input type="text" v-model.number="num1"/></div>
+        <div><input type="text" v-model.number="num2"/></div>
+        {{num1+num2}}
+        {{parseInt(num1)+parseInt(num2)}}
+        <div><input v-model.lazy.trim ="msg" /></div>
     </div>
 </body>
 <script>
@@ -37,13 +31,9 @@
         el:'#app',
         data(){
             return{
-                toggle:'',
-                selected: {},
-                list:[
-                    {title:"羊肉串",price:2},
-                    {title:"猪肉串",price:3},
-                    {title:"馒头片",price:0.5}
-                ]
+                msg:'',
+                num1:0,
+                num2:0
             }
         },
         methods:{
