@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>watch</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="updateOneItemInObject">Click me to update one item in an object</button>
+        <button @click="updateObject">Click me</button>
+        <button @click="categories[1].children[0].title='健力宝'" type="button">更新</button>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return {
+                category:{
+                    title:"肉类",
+                    children:{
+                        title:"羊肉串"
+                    }
+                },
+                categories:[
+                    {
+                        title:"肉类",
+                        children:[
+                            {title:"羊肉串"},
+                            {title:"猪肉串"},
+                            {title:"牛肉串"}
+                        ]
+                    },
+                    {
+                        title:"饮料",
+                        children:[
+                            {title:"可乐"},
+                            {title:"雪碧"},
+                            {title:"美年达"}
+                        ]
+                    }
+                ]
+            }
+        },
+        watch:{
+            "category.children.title": function(newValue,oldValue){
+                console.log(`新值：${newValue} --------- 旧值：${oldValue}`);
+            },
+            "category": function(newValue,oldValue){
+                console.log(`新值：${newValue} --------- 旧值：${oldValue}`);
+            },
+            "categories":{
+                handler(val1,val2){
+                    // console.log(JSON.stringify(val1));
+                    console.log(val1);
+                    console.log(val2);
+                    console.log(JSON.stringify(val1) == JSON.stringify(val2));
+                },
+                deep:true
+            }
+        },
+        methods:{
+            updateOneItemInObject(){
+                if(this.category.children.title=='鸡肉串'){
+                    this.category.children.title='羊肉串';
+                    return;
+                }
+                this.category.children.title='鸡肉串';
+            },
+            updateObject(){
+                this.category={
+                    title:"肉类",
+                    children:{
+                        title:"牛肉串"
+                    }
+                }
+            }
+        }
+    });
+    console.log(vue);
+
+</script>
+</html>

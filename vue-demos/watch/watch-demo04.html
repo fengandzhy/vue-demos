@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>watch</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        用户姓名：<input type="text" v-model="User.name">
+        <button @click="updateObject1">Click me1</button>
+        <button @click="updateObject2">Click me2</button>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return {
+                User: {
+                    name: 'zhangsan',
+                    gender: 'male'
+                }
+            }
+        },
+        watch:{
+            // 'User': {
+            //     handler: function (newValue, oldValue) {
+            //         console.log(`对象记录：新值：${newValue.name} --------- 旧值：${oldValue.name}`)
+            //     },
+            //     deep: true
+            // }
+            // 'User.name': function(v1,v2){
+            //     console.log(`对象记录：新值：${v1} --------- 旧值：${v2}`)
+            // }
+            'User': {
+                    handler:function(v1,v2){
+                    console.log(`对象记录：新值：${v1.name} --------- 旧值：${v2.name}`);
+                },
+                deep:true
+            }
+        },
+        methods:{
+            updateObject1(){
+                if(this.User.name=='lisi'){
+                    this.User = {
+                        name: 'zhangsan',
+                        gender: 'male'
+                    }
+                    return;
+                }
+                this.User={
+                    name: 'lisi',
+                    gender: 'male'
+                }
+            },
+            updateObject2(){
+                if(this.User.name=='lisi'){
+                    this.User.name='zhangsan'
+                    return;
+                }
+                this.User.name='lisi';
+            }
+        }
+    });
+    console.log(vue);
+
+</script>
+</html>
