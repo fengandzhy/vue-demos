@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>computed</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        商品：苹果电脑<br/>
+        价格：{{price}}<br/>
+        数量：<button type="button" @click="minus">-</button> {{amount}} <button type="button" @click="add">+</button><br/>
+        金额：{{totalPrice}}
+    </div>
+</body>
+<script>
+
+
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return {
+                amount:0,
+                price:17000,
+                total:0
+            }
+        },
+        methods:{
+            add(){
+                this.amount = this.amount +1;
+                this.totalPrice = this.amount; // 这里就是触发totalPrice set方法的地方.
+            },
+            minus(){
+                if(this.amount>0){
+                    this.amount = this.amount -1;
+                    this.totalPrice = this.amount; // 这里就是触发totalPrice set方法的地方.
+                }
+            }
+        },
+        computed:{
+            totalPrice:{
+                set(val){
+                    console.log(val);
+                    this.total = this.amount * this.price;
+                },
+                get(){
+                    return this.total;
+                }
+            }
+        }
+    });
+
+</script>
+</html>
