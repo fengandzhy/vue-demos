@@ -14,34 +14,18 @@
     </div>
 </body>
 <script>
-
-
     const vue = new Vue({
         el:'#app',
-
         data(){
             return {
                 name: ''
             }
         },
-        computed:{
-            computedName:{
-                set(val){
-                    this.name = val;
-                },
-                get(){
-                    return this.name;
-                    // return ''; 如果返回不变, 无论怎么调用set方法, 都不会触及watch里面的监听方法
-                }
-            }
-        },
         watch:{
-            name(newValue,oldValue){
-                console.log('name watcher');
-                console.log(`新值：${newValue} --------- 旧值：${oldValue}`);
-            },
-            computedName(newValue,oldValue){
-                console.log('computedName watcher');
+            name:'watchName' // 注意这里的key值和你要监听的变量同名
+        },
+        methods:{
+            watchName(newValue,oldValue){
                 console.log(`新值：${newValue} --------- 旧值：${oldValue}`);
             }
         }
