@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>ref</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .box1{width:100px;height:100px;background-color: #FF0000;color:#FFFFFF;margin-bottom: 20px;}
+        .box2{width:100px;height:100px;background-color: #00FF00;color:#FFFFFF;margin-bottom: 20px;}
+        .box3{width:100px;height:100px;background-color: #0000FF;color:#FFFFFF;margin-bottom: 20px;}
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <div class="box1" ref="box1">我是第一个盒子</div>
+        <div class="box2" ref="box2">我是第二个盒子</div>
+        <div class="box3" ref="box3">我是第三个盒子</div>
+    </div>
+</body>
+<script>
+
+
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return {
+
+            }
+        },
+        mounted(){
+            //获取box1的内容
+            console.log(this.$refs['box1'].innerHTML);
+            //获取id="app"的内容
+            console.log(this.$refs['box1'].parentNode.innerHTML);
+            //获取box2下一个元素
+            console.log(this.$refs['box2'].nextElementSibling);
+            //获取box3上一个元素
+            console.log(this.$refs['box3'].previousElementSibling);
+            console.log(this.$refs['box3'].__proto__);
+        }
+    });
+    console.log(vue);
+
+</script>
+</html>

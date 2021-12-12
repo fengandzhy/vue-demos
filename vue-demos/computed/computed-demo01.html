@@ -7,9 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>computed</title>
     <script src="../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <div id="app">
+    <div id="app" v-cloak>
         <div>翻转前:{{message}}</div>
         <div>翻转后:{{reversedMessage}}</div>
         <input type="text" v-model="newName"/>{{name}}
