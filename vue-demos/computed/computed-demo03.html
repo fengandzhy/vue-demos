@@ -14,6 +14,7 @@
         价格：{{price}}<br/>
         数量：<button type="button" @click="minus">-</button> {{amount}} <button type="button" @click="add">+</button><br/>
         金额：{{totalPrice}}
+<!--        <button @click="setPrice1">Set Price1</button>-->
     </div>
 </body>
 <script>
@@ -38,7 +39,10 @@
                     this.amount = this.amount -1;
                     this.totalPrice = this.amount; // 这里就是触发totalPrice set方法的地方.
                 }
-            }
+            },
+            // setPrice1(){
+            //     this.price1 = 4;
+            // }
         },
         computed:{
             totalPrice:{
@@ -49,7 +53,10 @@
                 get(){
                     return this.total;
                 }
-            }
+            },
+            // price1(){
+            //     return parseFloat((this.price*this.amount).toFixed(2));
+            // }
         }
     });
 

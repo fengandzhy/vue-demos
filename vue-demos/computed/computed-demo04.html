@@ -10,30 +10,31 @@
 </head>
 <body>
     <div id="app">
-        商品：苹果电脑<br/>
-        价格：{{price}}<br/>
-        数量：<button type="button" @click="amount>1?--amount:1">-</button> {{amount}} <button type="button" @click="++amount">+</button><br/>
-        金额：{{totalPrice}}
+        <p>{{ReverseMsg}} {{ReverseMsg}} {{ReverseMsg}}{{ReverseMsg}}{{ReverseMsg}}</p>
+        <p>{{ReverseMsg1()}}{{ReverseMsg1()}}{{ReverseMsg1()}}{{ReverseMsg1()}}{{ReverseMsg1()}}</p>
     </div>
 </body>
 <script>
-
-
     const vue = new Vue({
         el:'#app',
         data(){
             return {
-                amount:0,
-                price:17000,
-                total:0
+                message: 'hello vue'
             }
         },
         computed:{
-            totalPrice(){
-                return parseFloat((this.price*this.amount).toFixed(2));
+            ReverseMsg(){
+                console.log("计算属性"+Date.now());
+                return this.message.split("").reverse().join("");
+            }
+        },
+        methods:{
+            ReverseMsg1(){
+                console.log("执行的是方法"+Date.now());
+                return this.message.split("").reverse().join("");
             }
         }
     });
-
+    console.log(vue);
 </script>
 </html>
