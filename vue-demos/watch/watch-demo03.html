@@ -10,8 +10,8 @@
 </head>
 <body>
     <div id="app">
-        <button @click="updateOneItemInObject">Click me to update one item in an object</button>
-        <button @click="updateObject">Click me</button>
+        <button @click="updateOneItemInObject">Click me1 </button>
+        <button @click="updateObject">Click me2</button>
         <button @click="categories[1].children[0].title='健力宝'" type="button">更新</button>
     </div>
 </body>
@@ -50,6 +50,9 @@
             "category.children.title": function(newValue,oldValue){
                 console.log(`新值：${newValue} --------- 旧值：${oldValue}`);
             },
+            // "categories[0].children[0].title": function(newValue,oldValue){
+            //     console.log(`新值：${newValue} --------- 旧值：${oldValue}`);
+            // },
             "category": function(newValue,oldValue){
                 console.log(`新值：${newValue} --------- 旧值：${oldValue}`);
             },
@@ -75,7 +78,7 @@
                 this.category={
                     title:"肉类",
                     children:{
-                        title:"牛肉串"
+                        title:"羊肉串"
                     }
                 }
             }
