@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>watch</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="name"/>
+    </div>
+</body>
+<script>
+
+
+    const vue = new Vue({
+        el:'#app',
+
+        data(){
+            return {
+                name: ''
+            }
+        },
+        computed:{
+            computedName:{
+                set(val){
+                    this.name = val;
+                },
+                get(){
+                    return this.name;
+                    // return ''; 如果返回不变, 无论怎么调用set方法, 都不会触及watch里面的监听方法
+                }
+            }
+        },
+        watch:{
+            name(newValue,oldValue){
+                console.log('name watcher');
+                console.log(`新值：${newValue} --------- 旧值：${oldValue}`)
+            },
+            computedName(newValue,oldValue){
+                console.log('computedName watcher');
+                console.log(`新值：${newValue} --------- 旧值：${oldValue}`)
+            }
+        }
+    });
+    console.log(vue);
+
+</script>
+</html>
