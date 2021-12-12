@@ -10,9 +10,10 @@
 </head>
 <body>
     <div id="app">
-        <div>翻转前:{{message}}</div>
-        <div>翻转后:{{reversedMessage}}</div>
-        <input type="text" v-model="newName"/>{{name}}
+        商品：苹果电脑<br/>
+        价格：{{price}}<br/>
+        数量：<button type="button" @click="amount>1?--amount:1">-</button> {{amount}} <button type="button" @click="++amount">+</button><br/>
+        金额：{{totalPrice}}
     </div>
 </body>
 <script>
@@ -20,29 +21,19 @@
 
     const vue = new Vue({
         el:'#app',
-
         data(){
             return {
-                message: 'abcdefg',
-                name: ''
+                amount:0,
+                price:17000,
+                total:0
             }
         },
         computed:{
-            reversedMessage(){
-                return this.message.split('').reverse().join('');
-            },
-            newName:{
-                set(val){
-                    this.name = val;
-                },
-                get(){
-                    return this.name;
-                }
+            totalPrice(){
+                return parseFloat((this.price*this.amount).toFixed(2));
             }
         }
     });
-    console.log(vue);
-    console.log(vue.message);
-    console.log(vue.reversedMessage);
+
 </script>
 </html>
