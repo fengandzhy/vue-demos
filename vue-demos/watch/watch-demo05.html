@@ -11,42 +11,42 @@
 <body>
     <div id="app">
         <input type="text" v-model="name"/>
+        <button @click="updateObject">Click me</button>
     </div>
 </body>
 <script>
-
-
     const vue = new Vue({
         el:'#app',
-
         data(){
             return {
-                name: ''
-            }
-        },
-        computed:{
-            computedName:{
-                set(val){
-                    this.name = val;
-                },
-                get(){
-                    return this.name;
-                    // return ''; 如果返回不变, 无论怎么调用set方法, 都不会触及watch里面的监听方法
+                name: '',
+                User: {
+                    name: 'zhangsan',
+                    gender: 'male'
                 }
             }
         },
-        watch:{
-            name(newValue,oldValue){
-                console.log('name watcher');
-                console.log(`新值：${newValue} --------- 旧值：${oldValue}`);
-            },
-            computedName(newValue,oldValue){
-                console.log('computedName watcher');
-                console.log(`新值：${newValue} --------- 旧值：${oldValue}`);
+        methods:{
+            updateObject(){
+                if(this.User.name=='lisi'){
+                    this.User.name='zhangsan'
+                    return;
+                }
+                this.User.name='lisi';
             }
+        },
+        created () {
+            this.$watch('User',
+                function (newValue, oldValue) {
+                    console.log(`新值：${newValue.name} --------- 旧值：${oldValue.name}`);
+                },
+                {deep: true}
+            );
         }
     });
-    console.log(vue);
+    vue.$watch('name', function (newValue, oldValue) {
+        console.log(`新值：${newValue} --------- 旧值：${oldValue}`)
+    });
 
 </script>
 </html>

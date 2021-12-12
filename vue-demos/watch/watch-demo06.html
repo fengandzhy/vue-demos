@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>watch</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="updateObject" type="button">更新</button>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+
+        data(){
+            return {
+                categories:[
+                    {
+                        title:"肉类",
+                        children:[
+                            {title:"羊肉串"},
+                            {title:"猪肉串"},
+                            {title:"牛肉串"}
+                        ]
+                    },
+                    {
+                        title:"饮料",
+                        children:[
+                            {title:"可乐"},
+                            {title:"雪碧"},
+                            {title:"美年达"}
+                        ]
+                    }
+                ]
+            }
+        },
+        methods:{
+            updateObject(){
+                if(this.categories[0].children[1].title=='可乐'){
+                    this.categories[0].children[1].title='健力宝'
+                    return;
+                }
+                this.categories[0].children[1].title='可乐';
+            }
+        },
+        created () {
+            // this.$watch(
+            //     function () { // 第一个函数就是处理你要监听的属性，只要将其return出去就行
+            //         return this.categories[0].children[1].title;
+            //     },
+            //     function (newValue, oldValue) {
+            //         console.log(`新值：${newValue} --------- 旧值：${oldValue}`);
+            //     }
+            // )
+            this.$watch('categories',
+                function (newValue, oldValue) {
+                    console.log(`新值：${newValue} --------- 旧值：${oldValue}`);
+                },
+                {deep: true}
+            );
+        },
+    });
+</script>
+</html>
