@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>lifecycle</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <h3 ref="h3">{{msg}}</h3>
+        <button @click="updateMsg">update</button>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return {
+                msg:'欢迎来到小豆子学堂'
+            }
+        },
+        methods:{
+            updateMsg(){
+                this.msg='Welcome to XDZ';
+            }
+        },
+        updated(){
+            console.log(`页面上的数据：${this.$refs['h3'].innerText}`);
+            console.log(`data 中的 message 数据：${this.msg}`);
+            alert('先看看控制台');
+        }
+    });
+
+
+</script>
+</html>
