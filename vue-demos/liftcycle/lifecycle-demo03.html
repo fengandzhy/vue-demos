@@ -31,11 +31,12 @@
                 console.log('执行了show函数');
             }
         },
-        beforeCreate(){
+        created(){
             console.log(`Vue实例挂载对象el:${this.$el}`);
             console.log(`Vue实例的data对象:${this.$data}`);
             console.log(`Vue实例的msg对象:${this.msg}`);
             console.log(`Vue实例的methods对象:${this.$options.methods}`);
+            this.show();
         }
     });
 
