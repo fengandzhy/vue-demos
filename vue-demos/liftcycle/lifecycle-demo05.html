@@ -15,7 +15,8 @@
 </head>
 <body>
     <div id="app" v-cloak>
-        <h3 id="h3" ref="h3">{{msg}}</h3>
+        <h3 ref="h3">{{msg}}</h3>
+        <button @click="updateMsg">update</button>
     </div>
 </body>
 <script>
@@ -26,10 +27,15 @@
                 msg:'欢迎来到小豆子学堂'
             }
         },
-
-        //在执行mounted的时候，vue对象尚未渲染到页面中去，所以这里无法取到值
-        beforeMount(){
-            console.log(document.getElementById('h3').innerText);
+        methods:{
+            updateMsg(){
+                this.msg='Welcome to XDZ';
+            }
+        },
+        beforeUpdate(){
+            console.log(`页面上的数据：${this.$refs['h3'].innerText}`);
+            console.log(`data 中的 message 数据：${this.msg}`);
+            alert('先看看控制台');
         }
     });
 

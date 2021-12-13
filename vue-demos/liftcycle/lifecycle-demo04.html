@@ -26,11 +26,7 @@
                 msg:'欢迎来到小豆子学堂'
             }
         },
-        methods:{
-            show(){
-                console.log('执行了show函数');
-            }
-        },
+
         // 在执行mounted的时候，vue对象已经渲染到页面中去了，所以这里就可以取到值
         mounted(){
             console.log(this.$refs['h3'].innerText);
