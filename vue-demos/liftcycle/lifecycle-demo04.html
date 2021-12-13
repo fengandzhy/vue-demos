@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="app" v-cloak>
-        <h3 id="h3" ref="h3">{{msg}}</h3>
+        <h3 ref="h3">{{msg}}</h3>
     </div>
 </body>
 <script>
@@ -31,8 +31,8 @@
                 console.log('执行了show函数');
             }
         },
-        beforeMount(){
-            console.log(document.getElementById('h3').innerText);
+        mounted(){
+            console.log(this.$refs['h3'].innerText);
         }
     });
 
