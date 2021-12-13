@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>lifecycle</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        {{msg}}
+        <button @click="update">更新数据</button>
+        <button @click="destroy">销毁组件</button>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return {
+                msg:'欢迎来到小豆子学堂'
+            }
+        },
+        methods:{
+            update(){
+                this.msg='"welcome to xdz'
+            },
+            destroy(){
+               this.$destroy();
+            }
+        },
+        beforeCreate(){
+            alert('组件实例刚刚被创建，还未进行数据的观测和事件配置');
+        },
+        created(){
+            alert('实例已经创建完成，并且已经进行数据观测和事件配置');
+        },
+        beforeMount(){
+            alert('模板编译之前，还未挂载');
+        },
+        mounted(){
+            alert('模板编译之后，已经挂载，此时才会渲染页面，才能看到页面上数据的展示');
+        },
+        beforeUpdate(){
+            alert('数据更新之前');
+        },
+        updated() {
+            alert('数据更新之后');
+        },
+        beforeDestroy(){
+            alert('组件销毁之前');
+        },
+        destroyed(){
+            alert('组件销毁之后');
+        }
+    });
+
+
+</script>
+</html>
