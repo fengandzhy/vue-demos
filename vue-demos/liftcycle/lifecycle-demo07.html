@@ -16,7 +16,8 @@
 <body>
     <div id="app" v-cloak>
         <h3 ref="h3">{{msg}}</h3>
-        <button @click="destroyVue">update</button>
+        <button @click="destroyVue">destroy</button>
+        <button @click="updateMsg">update</button>
     </div>
 </body>
 <script>
@@ -30,6 +31,9 @@
         methods:{
             destroyVue(){
                 this.$destroy();
+            },
+            updateMsg(){
+                this.msg='Welcome to XDZ';
             }
         },
         beforeDestroy(){
