@@ -10,8 +10,8 @@
 </head>
 <body>
     <div id="app">
-        {{name}}<br>
-        {{msg1}}
+        {{msg1}}<br>
+        {{msg}}<br>
         <button @click="updateMsg">Update</button>
     </div>
 </body>
@@ -21,7 +21,6 @@
         data(){
             return {
                 msg: '',
-                name:'',
                 msg1:''
             }
         },
@@ -29,28 +28,20 @@
             updateMsg(){
                 if(this.msg==='Welcome to Vue'){
                     this.msg = 'Welcome to XDZ';
-                    localStorage.setItem('msg',this.msg);
                     return;
                 }
                 this.msg = 'Welcome to Vue';
-                localStorage.setItem('msg',this.msg);
             }
-        },
-        mounted(){
-            this.name = localStorage.getItem('msg');
         },
         updated(){
             this.msg1 = localStorage.getItem('msg');
         },
         watch:{
             msg:function(){
-
+                localStorage.setItem('msg',this.msg);
             }
         }
     });
-    console.log(vue.msg1);
-    console.log(vue.name);
-    console.log(vue.msg);
 
 </script>
 </html>
