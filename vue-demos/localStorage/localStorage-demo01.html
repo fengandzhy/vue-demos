@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>localStorage</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{name}}<br>
+        {{msg1}}
+        <button @click="updateMsg">Update</button>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return {
+                msg: '',
+                name:'',
+                msg1:''
+            }
+        },
+        methods:{
+            updateMsg(){
+                if(this.msg==='Welcome to Vue'){
+                    this.msg = 'Welcome to XDZ';
+                    localStorage.setItem('msg',this.msg);
+                    return;
+                }
+                this.msg = 'Welcome to Vue';
+                localStorage.setItem('msg',this.msg);
+            }
+        },
+        mounted(){
+            this.name = localStorage.getItem('msg');
+        },
+        updated(){
+            this.msg1 = localStorage.getItem('msg');
+        },
+        watch:{
+            msg:function(){
+
+            }
+        }
+    });
+    console.log(vue.msg1);
+    console.log(vue.name);
+    console.log(vue.msg);
+
+</script>
+</html>
