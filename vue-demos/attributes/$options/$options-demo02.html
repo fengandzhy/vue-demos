@@ -15,40 +15,26 @@
 </head>
 <body>
     <div id="app" v-cloak>
-        {{msg}}
+        {{name}}
     </div>
 </body>
 <script>
     const vue = new Vue({
         el:'#app',
         data(){
-            return {
-                msg:'Welcome to Vue',
+            return{
+                name:'Hello Vue ',
+                // show(){
+                //     console.log('The show in the data.');
+                // }
             }
         },
-        methods: {
+        methods:{
             show(){
-                console.log('The show in the methods!');
+                console.log('The show in the methods.');
             }
         },
-        computed:{
-
-        },
-        watch:{
-
-        },
-        name:'ZhangSan',
-        age:28,
-        show:function(){
-            console.log('The show in the vue.')
-        }
+        name: 'new',
     });
-    console.log(vue);
-    console.log(vue.$options)
-    vue.$options.methods.show();
-    vue.$options.show();
-    vue.show();
-
-
 </script>
 </html>
