@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>$el</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        {{msg}}
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return {
+                msg:'Welcome to Vue'
+            }
+        },
+
+    });
+    console.log(vue.$el);
+    console.log(document.getElementById('app'));
+    vue.$el.style.color='#FFBBCC';
+    document.getElementById('app').style.color='#FFBBCC';
+    vue.$el.style.backgroundColor="blue";
+    document.getElementById('app').style.backgroundColor='blue';
+    console.log(vue.$el.innerHTML);
+    console.log(document.getElementById('app').innerHTML);
+
+
+</script>
+</html>
