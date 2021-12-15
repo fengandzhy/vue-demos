@@ -23,20 +23,24 @@
         el:'#app',
         data(){
             return {
-                msg:'Welcome to Vue'
+                msg:'Welcome to Vue',
+                students:[
+                    {
+                        id:1,
+                        name:'ZhangSan',
+                        age:18
+                    },
+                    {
+                        id:2,
+                        name:'Lisi',
+                        age:18
+                    }
+                ]
             }
         },
-
     });
-    console.log(vue.$el);
-    console.log(document.getElementById('app'));
-    vue.$el.style.color='#FFBBCC';
-    document.getElementById('app').style.color='#FFBBCC';
-    vue.$el.style.backgroundColor="blue";
-    document.getElementById('app').style.backgroundColor='blue';
-    console.log(vue.$el.innerHTML);
-    console.log(document.getElementById('app').innerHTML);
 
-
+    console.log(vue.$data);
+    console.log(vue.$data.students);
 </script>
 </html>
