@@ -16,26 +16,33 @@
 <body>
     <div id="app" v-cloak>
         <h3 ref="title">{{msg}}</h3>
+        <button @click="updateMsg">Update</button>
     </div>
 </body>
 <script>
     const vue = new Vue({
+        el:'#app',
         data(){
             return {
                 msg:'Welcome to Vue'
             }
         },
-    }).$mount('#app');
-    vue.$nextTick(function(){
-        console.log(vue.$refs.title.textContent);
-    });
-    vue.msg='Welcome to XDZ';
-    console.log(vue.$refs.title.textContent);
-    vue.$nextTick(function(){
-        console.log(vue.$refs.title.textContent);
-    });
-    console.log('We are here!');
-    vue.msg='Welcome to BTC';
+        methods:{
+            updateMsg(){
+                if(this.msg==='Welcome to Vue'){
+                    this.msg = 'Welcome to XDZ';
+                }else{
+                    this.msg = 'Welcome to Vue';
+                }
+                console.log('Data',this.msg);
+                console.log('Dom',vue.$refs.title.textContent);
+                this.$nextTick(function(){
+                    console.log('nextTick Dom',vue.$refs.title.textContent);
+                });
+            }
+        }
+    })
+
 
 </script>
 </html>
