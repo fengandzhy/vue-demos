@@ -39,7 +39,8 @@
                 }
             },
             updateName(){
-                this.user.name='Apple';
+                // this.user.name='Apple';
+                this.$set(this.user,'name','Apple');
             },
             add(){
                 Vue.set(this.user,'age',28);
