@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>$set</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <button @click='update'>update Attribute</button>
+        <button @click='add'>add Attribute</button>
+        <h3 ref="name">{{user.name}}</h3>
+        <h3 ref="age">{{user.age}}</h3>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        data(){
+            return {
+                user:{
+                    id:1001,
+                    name:'Jack'
+                }
+            }
+        },
+        methods:{
+            update(){
+                this.user.name='Alex';
+                console.log('data',this.user.name);
+                console.log('dom', this.$refs.name.textContent);
+                this.$nextTick(function(){
+                    console.log('nextTick', this.$refs.name.textContent);
+                });
+            },
+            add(){
+                // this.user.age=28;
+                this.$set(this.user,'age',28);
+                console.log(this.user);
+                console.log('dom', this.$refs.age.textContent);
+                this.$nextTick(function(){
+                    console.log('nextTick', this.$refs.age.textContent);
+                });
+            }
+        }
+    }).$mount('#app');
+
+
+</script>
+</html>
