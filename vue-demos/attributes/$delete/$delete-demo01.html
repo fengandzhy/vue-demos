@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>$delete</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <button @click='deleteAge'>delete Attribute</button>
+        <button @click='add'>add Attribute</button>
+        <h3 ref="name">{{user.name}}</h3>
+        <h3 ref="age">{{user.age}}</h3>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        data(){
+            return {
+                user:{
+                    id:1001,
+                    name:'Jack'
+                }
+            }
+        },
+        methods:{
+            deleteAge(){
+                if(this.user.age){
+                    this.$delete(this.user,'age');
+                }
+            },
+            add(){
+                this.$set(this.user,'age',28);
+            }
+        }
+    }).$mount('#app');
+
+
+</script>
+</html>
