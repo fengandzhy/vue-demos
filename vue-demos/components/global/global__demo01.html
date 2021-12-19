@@ -15,20 +15,22 @@
 </head>
 <body>
     <div id="app">
-        <p><a v-bind:href="link">程序思维 </a></p>
-        <p><a :href="link">程序思维 </a></p>
-        <p><a :[attr_href]="link">程序思维 </a></p>
+        <global-component></global-component>
     </div>
 </body>
 <script>
+    Vue.component('GlobalComponent',{
+        data(){
+            return {
+                title:'I am a global component'
+            }
+        },
+        template: `
+            <div>{{title}}</div>
+        `
+    });
     const vue = new Vue({
         el:'#app',
-        data(){
-            return{
-                link:'http://www.lucklnk.com',
-                attr_href:'href'
-            }
-        }
     });
 
 </script>
