@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-global</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <hello-vue></hello-vue>
+    </div>
+    <div id="app1">
+        <hello-vue></hello-vue>
+    </div>
+</body>
+<script>
+
+    const vue = new Vue({
+        el:'#app',
+    });
+
+    const myComponent = Vue.extend({
+        template:`<h3>Hello Vue</h3>`
+    });
+    Vue.component('helloVue',myComponent);
+
+    const vue1 = new Vue({
+        el:'#app1',
+    });
+
+</script>
+</html>

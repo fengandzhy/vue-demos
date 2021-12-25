@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-global</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <local-component></local-component>
+    </div>
+</body>
+<script>
+    const localComponent={
+        data(){
+            return{
+                name:'Sam'
+            }
+        },
+        template:`
+            <div>
+              <input type="text" v-model="name" />{{name}}
+            </div>
+        `
+    }
+    const vue = new Vue({
+        el:'#app',
+        components:{
+            localComponent
+        }
+    });
+
+
+
+</script>
+</html>
