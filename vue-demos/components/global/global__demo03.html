@@ -17,13 +17,12 @@
     <div id="app">
         <hello-vue></hello-vue>
     </div>
-    <template id="tmp1">
+    <template id="template1">
         <div>
             <div>{{title}}</div>
             <div>{{title}}</div>
         </div>
     </template>
-
 </body>
 <script>
     const myComponent = Vue.extend({
@@ -32,7 +31,7 @@
                 title:'I am a global component'
             }
         },
-        template:'#tmp1'
+        template:'#template1'
     });
     Vue.component('helloVue',myComponent);
 
