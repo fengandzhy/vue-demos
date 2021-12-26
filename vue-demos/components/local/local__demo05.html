@@ -18,8 +18,9 @@
         <button @click="currentComponent='my-hello'">show hello component</button>
         <button @click="currentComponent='my-world'">show world component</button>
         <div>
-            <!--渲染一个“元组件”为动态组件。依 is 的值，来决定哪个组件被渲染。is 的值是哪个组件名称就显示哪个组件-->
-            <component :is="currentComponent"></component>
+            <keep-alive>
+                <component :is="currentComponent"></component>
+            </keep-alive>
         </div>
     </div>
 </body>
