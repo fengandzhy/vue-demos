@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-global</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <b-component></b-component>
+    </div>
+    <template id="tempA">
+        <div>I am A component</div>
+    </template>
+    <template id="tempB">
+        <div>
+            <div>I am B component</div>
+            <a-component></a-component>
+        </div>
+    </template>
+</body>
+<script>
+    const AComponent={
+        template:'#tempA'
+    }
+
+    const BComponent={
+        components:{
+            AComponent
+        },
+        template:'#tempB'
+    }
+    const vue = new Vue({
+        el:'#app',
+        components:{
+            BComponent
+        }
+    });
+</script>
+</html>
