@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-local</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="currentComponent='my-hello'">show hello component</button>
+        <button @click="currentComponent='my-world'">show world component</button>
+        <div>
+            <!--渲染一个“元组件”为动态组件。依 is 的值，来决定哪个组件被渲染。is 的值是哪个组件名称就显示哪个组件-->
+            <component :is="currentComponent"></component>
+        </div>
+    </div>
+</body>
+<script>
+    const MyHello={
+        data(){
+            return{
+                x:Math.random()
+            }
+        },
+        template:`<h3>I am Hello component</h3>`
+    }
+
+    const MyWorld={
+        data(){
+            return{
+                y:Math.random()
+            }
+        },
+        template:`<h3>I am World component</h3>`
+    }
+    const vue = new Vue({
+        el:'#app',
+        data: {
+            currentComponent:"my-hello"
+        },
+        components:{
+            MyHello,
+            MyWorld
+        }
+    });
+</script>
+</html>
