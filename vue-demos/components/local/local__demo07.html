@@ -15,19 +15,17 @@
 </head>
 <body>
     <div id="app">
-        <table>
-            <tr is="component-tr"></tr>
-        </table>
+        <component-tr></component-tr>
     </div>
+    <template id="tmp1">
+        <div>
+            <div v-for="item in stuList">
+                <div>{{item.name}}</div>
+            </div>
+        </div>
+    </template>
 </body>
-<script type="text/x-template" id="tmp1">
-    <div>
-        <tr v-for="item in stuList">
-            <td>{{item.name}}</td>
-            <td>{{item.num}}</td>
-        </tr>
-    </div>
-</script>
+
 <script>
     const componentTr={
         data(){

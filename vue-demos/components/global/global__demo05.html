@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>components-local</title>
+    <title>components-global</title>
     <script src="../../js/vue.js"></script>
     <style>
         [v-cloak]{
@@ -15,38 +15,31 @@
 </head>
 <body>
     <div id="app">
-        <table>
-            <tr is="component-tr"></tr>
-        </table>
+        <hello-vue></hello-vue>
     </div>
 </body>
-<script type="text/x-template" id="tmp1">
+<script type="text/x-template" id="template1">
     <div>
-        <tr v-for="item in stuList">
-            <td>{{item.name}}</td>
-            <td>{{item.num}}</td>
-        </tr>
+        <div>{{title}}</div>
+        <div>{{title}}</div>
     </div>
 </script>
 <script>
-    const componentTr={
+    const myComponent = Vue.extend({
         data(){
-            return{
-                stuList: [
-                    { num: '1001', name: 'zhangsan' },
-                    { num: '1002', name: 'lisi' },
-                    { num: '1003', name: 'wangwu' }
-                ]
+            return {
+                title:'I am a global component'
             }
         },
-        template:'#tmp1'
-    }
+        template:'#template1'
+    });
+    Vue.component('helloVue',myComponent);
 
     const vue = new Vue({
         el:'#app',
-        components:{
-            componentTr
-        }
     });
+
+
+
 </script>
 </html>
