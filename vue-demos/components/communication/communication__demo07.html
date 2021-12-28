@@ -11,37 +11,51 @@
         [v-cloak]{
             display: none;
         }
-        .input{border: 1px solid #0000FF;font-size:14px;}
-        .my-input{width:300px;height:40px;background-color: #FF0000;}
+
     </style>
 </head>
 <body>
     <div id="app">
-        <b-component></b-component>
+        <father-component></father-component>
     </div>
 </body>
 <script type="text/x-template" id="tempA">
-    <input type="text" class="input" />
+    <div>
+        <h1 :message="message" v-bind="$attrs">{{message}}</h1>
+    </div>
 </script>
 <script type="text/x-template" id="tempB">
-    <input-component class="my-input" type="checkbox" checked></input-component>
+    <son-component :message="message" hhh="hhh"></son-component>
 </script>
 <script>
-    const InputComponent={
+    const SonComponent={
+        props:{
+            'message':{
+                type:String
+            }
+        },
+        inheritAttrs:false,
         template:'#tempA',
     }
 
-    const BComponent={
+    const FatherComponent={
+        data(){
+            return{
+                message:'Welcome to Vue'
+            }
+        },
         components:{
-            InputComponent
+            SonComponent
         },
         template:'#tempB'
     }
     const vue = new Vue({
         el:'#app',
         components:{
-            BComponent
+            FatherComponent
         }
     });
+
+    console.log(SonComponent);
 </script>
 </html>
