@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>components-global</title>
+    <title>components-local</title>
     <script src="../../js/vue.js"></script>
     <style>
         [v-cloak]{
@@ -15,36 +15,34 @@
 </head>
 <body>
     <div id="app">
-        <hello-vue></hello-vue>
+        <b-component></b-component>
     </div>
-    <template id="template1">
-        <div>
-            <tr v-for="item in stuList">
-                <td>{{item.name}}</td>
-            </tr>
-        </div>
+    <template id="tempA">
+        <div>I am A component</div>
     </template>
 </body>
+<script type="text/x-template" id="tempB">
+    <div>
+        <div>I am B component</div>
+        <AComponent></AComponent>
+    </div>
+</script>
 <script>
-    const myComponent = Vue.extend({
-        data(){
-            return {
-                stuList: [
-                    { num: '1001', name: 'A' },
-                    { num: '1002', name: 'B' },
-                    { num: '1003', name: 'C' }
-                ]
-            }
-        },
-        template:'#template1'
-    });
-    Vue.component('helloVue',myComponent);
+    const AComponent={
+        template:'#tempA'
+    }
 
+    const BComponent={
+        components:{
+            AComponent
+        },
+        template:'#tempB'
+    }
     const vue = new Vue({
         el:'#app',
+        components:{
+            BComponent
+        }
     });
-
-
-
 </script>
 </html>
