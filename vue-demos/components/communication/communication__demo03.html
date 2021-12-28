@@ -27,17 +27,18 @@
 <script type="text/x-template" id="tempB">
     <div>
         <div>I am B component</div>
-        <a-component :first-title="'firstTitle'" :second-title="'secondTitle'"></a-component>
+        <a-component :first-title="firstTitle" :second-title="secondTitle"></a-component>
     </div>
 </script>
 <script>
     const AComponent={
         props: {
             firstTitle:{
-
+                type:String,
+                required:true
             },
-            'second-title':{
-
+            secondTitle:{
+                type:String
             }
         },
         template:'#tempA',
