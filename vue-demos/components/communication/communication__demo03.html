@@ -20,13 +20,14 @@
 </body>
 <script type="text/x-template" id="tempA">
     <div>
-        <div>I am A component</div>
         <div>{{firstTitle}}---{{secondTitle}}</div>
+        <div>{{list}}</div>
+        <div>{{obj}}</div>
     </div>
 </script>
 <script type="text/x-template" id="tempB">
     <div>
-        <div>I am B component</div>
+
         <a-component :first-title="firstTitle" :second-title="secondTitle"></a-component>
     </div>
 </script>
@@ -39,7 +40,21 @@
                 default:'I am a default title'
             },
             secondTitle:{
-                type:String
+                type:String,
+                default:'I am a default title for secondTitle'
+            },
+            list:{
+                type:Array,
+                default:()=>['A','B','C']
+            },
+            obj:{
+                type:Object,
+                default:()=> {
+                    return{
+                        'name':'A',
+                        'age':23
+                    }
+                }
             }
         },
         template:'#tempA',
