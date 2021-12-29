@@ -25,7 +25,7 @@
     </div>
 </script>
 <script type="text/x-template" id="tempB">
-    <son-component :message="message" hhh="hhh"></son-component>
+    <son-component :message="message" hhh="hhh" style="height:100px"></son-component>
 </script>
 <script>
     const SonComponent={
@@ -34,7 +34,7 @@
                 type:String
             }
         },
-        inheritAttrs:false,
+        inheritAttrs:true,
         template:'#tempA',
     }
 
