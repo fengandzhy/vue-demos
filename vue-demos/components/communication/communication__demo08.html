@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-communication</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <father-component></father-component>
+    </div>
+</body>
+<script type="text/x-template" id="tempA">
+    <div>
+        <h1 :message="message" >{{message}}</h1>
+        <button @click="message='Welcome to XDZ'">改变</button>
+    </div>
+</script>
+<script type="text/x-template" id="tempB">
+    <son-component :title-message="message"></son-component>
+</script>
+<script>
+    const SonComponent={
+        props:{
+            'title-message':{
+                type:String
+            }
+        },
+        data(){
+            return{
+                message:this.titleMessage
+            }
+        },
+        inheritAttrs:false,
+        template:'#tempA',
+    }
+
+    const FatherComponent={
+        data(){
+            return{
+                message:'Welcome to Vue'
+            }
+        },
+        components:{
+            SonComponent
+        },
+        template:'#tempB'
+    }
+    const vue = new Vue({
+        el:'#app',
+        components:{
+            FatherComponent
+        }
+    });
+
+    console.log(SonComponent);
+</script>
+</html>
