@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-communication</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <father-component></father-component>
+    </div>
+</body>
+<script type="text/x-template" id="tempA">
+    <div>
+        <button @click="handleClick">改变</button>
+    </div>
+</script>
+<script type="text/x-template" id="tempB">
+    <div>
+        <son-component @from-son="receive"></son-component>
+        <div>{{message}}</div>
+        <div>{{name}}</div>
+    </div>
+</script>
+<script>
+    const SonComponent={
+        props:{
+            'title-message':{
+                type:Object
+            }
+        },
+        data(){
+            return{
+                message:'Welcome to Vue',
+                name:'XDZ'
+            }
+        },
+        methods:{
+            handleClick(){
+                this.$emit('from-son',this.message,this.name);
+            }
+        },
+        template:'#tempA',
+    }
+
+    const FatherComponent={
+        data(){
+            return{
+                message:'',
+                name:''
+            }
+        },
+        methods:{
+            receive(message,name){
+                this.name=name;
+                this.message = message;
+            }
+        },
+        components:{
+            SonComponent
+        },
+        template:'#tempB'
+    }
+    const vue = new Vue({
+        el:'#app',
+        components:{
+            FatherComponent
+        }
+    });
+</script>
+</html>
