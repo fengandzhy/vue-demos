@@ -22,6 +22,7 @@
 <!--            <input type="number" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" />-->
             <input type="number" @keydown="processKeydown" />
             <input type="number" @keydown="processKeypress" />
+            <input type="text" @input="processInput($event)" />
         </div>
     </div>
 </body>
@@ -44,6 +45,9 @@
             },
             processKeypress(e){
                 console.log(e.target.value);
+            },
+            processInput(e){
+                console.log(e);
             }
         }
     });

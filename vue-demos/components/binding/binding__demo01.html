@@ -27,7 +27,7 @@
 </script>
 <script type="text/x-template" id="tempB">
     <div>
-        <son-component v-model="message" @input="handleInput($event)"></son-component>
+        <son-component v-model="message"></son-component>
         <h1>{{message}}</h1>
     </div>
 </script>
@@ -59,11 +59,6 @@
         },
         components: {
             SonComponent
-        },
-        methods:{
-            handleInput(e){
-                console.log(arguments);
-            }
         },
         template:'#tempB'
     }
