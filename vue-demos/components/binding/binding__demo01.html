@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-binding</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <father-component></father-component>
+    </div>
+</body>
+<script type="text/x-template" id="tempA">
+    <div>
+        <input type="text" v-model='currentVal'>
+        <h5>{{currentVal}}</h5>
+        <h5>{{value}}</h5>
+        <button @click="change">改变</button>
+    </div>
+</script>
+<script type="text/x-template" id="tempB">
+    <div>
+        <son-component v-model="message" ></son-component>
+        <h1>{{message}}</h1>
+    </div>
+</script>
+<script>
+    let vm = new Vue(); //在兄弟组件之间通信的桥梁
+    const SonComponent={
+        props:{
+            value:{
+                type: String
+            }
+        },
+        computed:{
+            currentVal:{
+                get(){
+                    return this.value
+                },
+                set(val){
+                    // this.value = val;
+                    this.$emit('input',val);
+                }
+            }
+        },
+        methods:{
+            change(){
+                // this.$emit('input','3');
+                this.currentVal = '3';
+            }
+        },
+        template:'#tempA',
+    }
+
+    const FatherComponent={
+        data(){
+            return{
+                message:''
+            }
+        },
+        components: {
+            SonComponent
+        },
+        methods:{
+            handleInput(val){
+               console.log(val);
+            }
+        },
+        template:'#tempB'
+    }
+    const vue = new Vue({ //这里的vue在所有的兄弟组件之后，不用用来当兄弟之间组件通信的桥梁
+        el:'#app',
+        components:{
+            FatherComponent
+        }
+    });
+</script>
+</html>
