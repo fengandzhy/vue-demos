@@ -23,18 +23,15 @@
     <div>
         <input type="text" v-model='currentVal'>
         <h5>{{currentVal}}</h5>
-        <h5>{{value}}</h5>
-        <button @click="change">改变</button>
     </div>
 </script>
 <script type="text/x-template" id="tempB">
     <div>
-        <son-component v-model="message" ></son-component>
+        <son-component v-model="message" @input="handleInput($event)"></son-component>
         <h1>{{message}}</h1>
     </div>
 </script>
 <script>
-    let vm = new Vue(); //在兄弟组件之间通信的桥梁
     const SonComponent={
         props:{
             value:{
@@ -47,15 +44,8 @@
                     return this.value
                 },
                 set(val){
-                    // this.value = val;
                     this.$emit('input',val);
                 }
-            }
-        },
-        methods:{
-            change(){
-                // this.$emit('input','3');
-                this.currentVal = '3';
             }
         },
         template:'#tempA',
@@ -71,13 +61,13 @@
             SonComponent
         },
         methods:{
-            handleInput(val){
-               console.log(val);
+            handleInput(e){
+                console.log(arguments);
             }
         },
         template:'#tempB'
     }
-    const vue = new Vue({ //这里的vue在所有的兄弟组件之后，不用用来当兄弟之间组件通信的桥梁
+    const vue = new Vue({
         el:'#app',
         components:{
             FatherComponent
