@@ -11,47 +11,131 @@
         [v-cloak]{
             display: none;
         }
+        .wrap{
+            width:100%;
+        }
+        .wrap .tab, .main .category-tab{
+            display: inline-block;
+            border:1px solid #EFEFEF;
+            padding: 5px 10px;
+            margin-left: 10px;
+            color: black;
+        }
+        .wrap .tab.active, .main .category-tab.active{
+            background-color: #0000FF;
+            color:#FFFFFF;
+        }
+        .main{
+            border:1px solid #EFEFEF;
+            padding:10px;
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <b-component></b-component>
+        <div class="wrap">
+            <a href="#" v-for="tab in tabs" :key="tab.id">
+                <div :class="{'tab':true,'active':tab.active}" @click="shiftTab(tab)">{{tab.displayName}}</div>
+            </a>
+        </div>
+        <keep-alive>
+            <component :is="currentComponent"></component>
+        </keep-alive>
     </div>
 </body>
 <script type="text/x-template" id="tempA">
-    <div>
-        <div>I am A component</div>
-        <div>{{firstTitle}}---{{secondTitle}}</div>
-    </div>
+    <div class="main">菜品详情</div>
 </script>
 <script type="text/x-template" id="tempB">
-    <div>
-        <div>I am B component</div>
-        <a-component :first-title="firstTitle" :second-title="secondTitle"></a-component>
+    <div class="main">
+        <input type="text"/>
+        <button>登录注册</button>
+    </div>
+</script>
+<script type="text/x-template" id="tempC">
+    <div class="main">
+        <a href="#" v-for="tab in tabs" :key="tab.id">
+            <div :class="{'category-tab':true,'active':tab.active}" @click="shiftTab(tab)">{{tab.displayName}}</div>
+        </a>
     </div>
 </script>
 <script>
-    const AComponent={
-        props:['first-title','second-title'],
+    const DetailComponent={
         template:'#tempA',
     }
 
-    const BComponent={
+    const LoginComponent={
+        template:'#tempB',
+        created() {
+            console.log("我是created钩子");
+        },
+        mounted() {
+            console.log("我是mounted钩子");
+        },
+        activated() {
+            console.log("我是activated钩子");
+        },
+        deactivated() {
+            console.log("我是deactivated钩子");
+        },
+        beforeDestroy() {
+            console.log("我是beforeDestroy钩子");
+        },
+        destroyed(){
+            console.log("我是destroyed钩子");
+        }
+    }
+    const CategoryComponent={
         data(){
             return{
-                firstTitle:'firstTitle from B',
-                secondTitle:'secondTitle from B'
+                tabs:[
+                    {id:1,displayName:'猪肉串',active:true},
+                    {id:2,displayName:'牛肉串',active:false},
+                    {id:3,displayName:'羊肉串',active:false}
+                ],
             }
         },
-        components:{
-            AComponent
+        methods:{
+            shiftTab(tab){
+                for(let i =0;i<this.tabs.length;i++){
+                    if(this.tabs[i].active){
+                        this.tabs[i].active=false;
+                        break;
+                    }
+                }
+                tab.active = true;
+            }
         },
-        template:'#tempB'
+        template:'#tempC'
     }
     const vue = new Vue({
         el:'#app',
+        data(){
+            return{
+                tabs:[
+                    {id:1,displayName:'菜品详情',component:'detail-component',active:true},
+                    {id:2,displayName:'注册登录',component:'login-component',active:false},
+                    {id:3,displayName:'菜品分类',component:'category-component',active:false}
+                ],
+                currentComponent:'detail-component'
+            }
+        },
+        methods:{
+            shiftTab(tab){
+                for(let i =0;i<this.tabs.length;i++){
+                    if(this.tabs[i].active){
+                        this.tabs[i].active=false;
+                        break;
+                    }
+                }
+                tab.active = true;
+                this.currentComponent = tab.component;
+            }
+        },
         components:{
-            BComponent
+            DetailComponent,
+            LoginComponent,
+            CategoryComponent
         }
     });
 </script>
