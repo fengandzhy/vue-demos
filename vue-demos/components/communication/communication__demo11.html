@@ -21,13 +21,14 @@
 </body>
 <script type="text/x-template" id="tempA">
     <div>
-        <button @click="handleClick">改变</button>
+        <button @click="handleClick">transmit value to father component</button>
     </div>
 </script>
 <script type="text/x-template" id="tempB">
     <div>
         <son-component @from-son="receive"></son-component>
         <div>{{message}}</div>
+        <div>{{array}}</div>
     </div>
 </script>
 <script>
@@ -42,12 +43,13 @@
                 message: {
                     name:'XDZ',
                     age:13
-                }
+                },
+                array:[1,2,3,4,5]
             }
         },
         methods:{
             handleClick(){
-                this.$emit('from-son',this.message);
+                this.$emit('from-son',this.message,this.array);
             }
         },
         template:'#tempA',
@@ -57,11 +59,13 @@
         data(){
             return{
                 message:'',
+                array:''
             }
         },
         methods:{
-            receive(message){
+            receive(message,array){
                 this.message = message;
+                this.array = array;
             }
         },
         components:{
