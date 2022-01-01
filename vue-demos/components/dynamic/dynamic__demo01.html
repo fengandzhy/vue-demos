@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-communication</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <b-component></b-component>
+    </div>
+</body>
+<script type="text/x-template" id="tempA">
+    <div>
+        <div>I am A component</div>
+        <div>{{firstTitle}}---{{secondTitle}}</div>
+    </div>
+</script>
+<script type="text/x-template" id="tempB">
+    <div>
+        <div>I am B component</div>
+        <a-component :first-title="firstTitle" :second-title="secondTitle"></a-component>
+    </div>
+</script>
+<script>
+    const AComponent={
+        props:['first-title','second-title'],
+        template:'#tempA',
+    }
+
+    const BComponent={
+        data(){
+            return{
+                firstTitle:'firstTitle from B',
+                secondTitle:'secondTitle from B'
+            }
+        },
+        components:{
+            AComponent
+        },
+        template:'#tempB'
+    }
+    const vue = new Vue({
+        el:'#app',
+        components:{
+            BComponent
+        }
+    });
+</script>
+</html>
