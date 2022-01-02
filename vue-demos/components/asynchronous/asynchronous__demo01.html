@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-communication</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <local-async-component></local-async-component>
+    </div>
+</body>
+<script type="text/x-template" id="tempA">
+    <div>{{msg}}</div>
+</script>
+<script>
+    const LocalAsyncComponent=(resolve,reject)=>{
+        setInterval(()=>{
+            resolve({
+                data(){
+                    return{
+                        msg:'I am a local async component!'
+                    }
+                },
+                template:'#tempA',
+                created() {
+                    console.log("我是created钩子");
+                },
+                mounted() {
+                    console.log("我是mounted钩子");
+                },
+                activated() {
+                    console.log("我是activated钩子");
+                },
+                deactivated() {
+                    console.log("我是deactivated钩子");
+                },
+                beforeDestroy() {
+                    console.log("我是beforeDestroy钩子");
+                },
+                destroyed(){
+                    console.log("我是destroyed钩子");
+                }
+            });
+        },10000);
+    }
+
+    const vue = new Vue({
+        el:'#app',
+        components:{
+            LocalAsyncComponent
+        }
+    });
+</script>
+</html>
