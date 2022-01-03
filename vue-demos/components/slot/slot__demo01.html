@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-call</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <father-component></father-component>
+    </div>
+</body>
+<script type="text/x-template" id="tempA">
+    <div>
+    </div>
+</script>
+<script type="text/x-template" id="tempB">
+    <div>
+        <son-component ref="son"></son-component>
+        <button @click="visitSonMethod">Visit son method</button>
+    </div>
+</script>
+<script>
+    const SonComponent={
+        props:{
+            pro:{
+                type: String,
+                default:'cbd'
+            }
+        },
+        data() {
+            return{
+                msg:'abc',
+                value:'def'
+            }
+        },
+        methods:{
+            teamMethod(){
+                return 'I am a team method in son component!';
+            }
+        },
+        computed:{
+            currentVal:{
+                get(){
+                    return this.value
+                },
+                set(val){
+                    this.value=val;
+                }
+            }
+        },
+        template:'#tempA',
+    }
+
+    const FatherComponent={
+        data(){
+            return{
+                message:''
+            }
+        },
+        components: {
+            SonComponent
+        },
+        methods:{
+            visitSonMethod(){
+                console.log(this.$refs['son'].msg);
+                console.log(this.$refs['son'].teamMethod());
+                console.log(this.$refs['son'].currentVal);
+                console.log(this.$refs['son'].pro);
+            }
+        },
+        template:'#tempB'
+    }
+    const vue = new Vue({
+        el:'#app',
+        components:{
+            FatherComponent
+        }
+    });
+</script>
+</html>
