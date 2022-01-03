@@ -21,17 +21,34 @@
 </body>
 <script type="text/x-template" id="tempA">
     <div>
-        <button><slot></slot></button>
+        <header>
+            <slot name="header"></slot>
+        </header>
+        <body>
+            <slot></slot>
+        </body>
+        <footer>
+            <slot name="footer"></slot>
+        </footer>
     </div>
 </script>
 <script type="text/x-template" id="tempB">
     <div>
-        <button-component>button</button-component>
-        <button-component>submit</button-component>
+        <base-layout>
+            <template #header>
+                <h1>我是页头</h1>
+            </template>
+            <div class="main">我是主体内容1</div>
+            <div class="main">我是主体内容2</div>
+            <template v-slot:footer>
+                <p>我是页脚</p>
+            </template>
+            <div class="main">我是主体内容3</div>
+        </base-layout>
     </div>
 </script>
 <script>
-    const ButtonComponent={
+    const BaseLayout={
         template:'#tempA',
     }
 
@@ -40,7 +57,7 @@
         el:'#app',
         template:'#tempB',
         components:{
-            ButtonComponent
+            BaseLayout
         }
     });
 </script>
