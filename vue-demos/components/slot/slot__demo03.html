@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-slot</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .panel{
+            margin:10px;
+            width:150px;
+            border: 1px solid #ccc;
+        }
+        .panel-header,
+        .panel-bottom{
+            height: 30px;
+            background-color: wheat;
+        }
+        .panel-body{
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <panel>
+            <span>11111</span>
+            <p>大家好，欢迎来到徐照兴课堂，有什么不理解的欢迎随时咨询</p>
+            <h3 slot="title">教育部</h3>
+            <a href="http://www.baidu.com" slot="more">百度</a>
+        </panel>
+        <panel>
+            <h3 slot="title">教育厅</h3>
+            <div>欢迎学习vue.js</div>
+            <a href="http://www.jd.com" slot="more">京东</a>
+        </panel>
+        <panel>
+            后续还有更多实战课程哦
+        </panel>
+    </div>
+</body>
+<script type="text/x-template" id="panelTpl">
+    <div class="panel">
+        <div class="panel-header"><slot name="title">默认头部内容</slot></div>
+        <div class="panel-body">
+            <slot></slot>
+        </div>
+        <div class="panel-bottom"><slot name="more">默认底部内容</slot></div>
+    </div>
+</script>
+<script>
+    const panelTpl={
+        template:'#panelTpl'
+    }
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            title: '大家好',
+            name: ''
+        },
+        components: {
+            'panel': panelTpl
+        }
+    })
+</script>
+</html>
