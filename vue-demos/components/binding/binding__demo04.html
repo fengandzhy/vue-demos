@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-binding</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <father-component></father-component>
+    </div>
+</body>
+<script type="text/x-template" id="tempA">
+    <div>
+        <input type="text" v-model="name">
+    </div>
+</script>
+<script type="text/x-template" id="tempB">
+    <div>
+        <son-component @from-son="receive" :value="name"></son-component>
+        <h1>{{message}}</h1>
+    </div>
+</script>
+<script>
+    const SonComponent={
+        props:{
+            value:{
+                type: String
+            }
+        },
+        data(){
+            return{
+                name:''
+            }
+        },
+        watch:{
+            name(newValue){
+                this.$emit('from-son',newValue);
+            }
+        },
+        template:'#tempA',
+    }
+
+    const FatherComponent={
+        data(){
+            return{
+                message:''
+            }
+        },
+        components: {
+            SonComponent
+        },
+        methods:{
+            receive(e){
+                this.message = e;
+            }
+        },
+        template:'#tempB'
+    }
+    const vue = new Vue({
+        el:'#app',
+        components:{
+            FatherComponent
+        }
+    });
+</script>
+</html>
