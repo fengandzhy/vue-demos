@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-recursion</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .tree-row{
+            width:100%;
+            height: auto;
+            box-sizing: border-box;
+            border-top: 1px solid #EFEFEF;
+            border-bottom: 1px solid #EFEFEF;
+            font-size: 14px;
+            overflow: hidden;
+            padding-top:10px;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <tree-component :data="categories"></tree-component>
+    </div>
+</body>
+<script type="text/x-template" id="tempA">
+    <div>
+        <div class="tree-row" v-for="(item,index) in data" :key="index">
+            <span :style="{'padding-left':level*20+'px'}">{{item.title}}</span>
+            <tree-component :level="level+1" :data="item.children" v-if="item.children && item.children.length>0"></tree-component>
+        </div>
+    </div>
+</script>
+<script>
+    const TreeComponent=(resolve)=>{
+        setInterval(()=>{
+            resolve({
+                name:'tree-component',
+                props:{
+                    level:{
+                        type:Number,
+                        default:0
+                    },
+                    data:{
+                        type:Array,
+                        default: ()=>[]
+                    }
+                },
+                template:'#tempA'
+            });
+        },1000);
+    }
+
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                categories:[
+                    {
+                        title:"数码",
+                        children:[
+                            {
+                                title:"手机",
+                                children:[
+                                    {title:"华为手机"},
+                                    {title:"苹果手机"}
+                                ]
+                            },
+                            {title:"电脑"}
+                        ]
+                    },
+                    {
+                        title: "家电",
+                        children: [
+                            {title:"大家电"},
+                            {title:"生活电器"},
+                            {title:"家电服务"}
+                        ]
+                    }
+                ]
+            }
+        },
+        components:{
+            TreeComponent
+        }
+    });
+</script>
+</html>
