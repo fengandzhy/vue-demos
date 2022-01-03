@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-communication</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <b-component></b-component>
+</div>
+</body>
+<script type="text/x-template" id="tempA">
+    <div>
+        <h1>{{message}}</h1>
+        <h1>{{array}}</h1>
+    </div>
+</script>
+<script type="text/x-template" id="tempB">
+    <div>
+        <a-component :message="message" :array="[]"></a-component>
+    </div>
+</script>
+<script>
+
+    const AComponent = {
+        props: {
+            message: {
+                type: Object,
+                default: () => {
+                },
+                validator: (value) => {
+                    return value.age > 12;
+                }
+            },
+            array: {
+                type: Array,
+                default:()=>[],
+                validator: (value) => {
+                    return value.length>0;
+                }
+            }
+        },
+        template: '#tempA',
+    }
+
+    const BComponent = {
+        data() {
+            return {
+                message: {
+                    name: 'XDZ',
+                    age: 13
+                },
+                array: [1, 2, 3, 4, 5]
+            }
+        },
+        components:{
+            AComponent
+        },
+        template: '#tempB'
+    }
+    const vue = new Vue({ //这里的vue在所有的兄弟组件之后，不用用来当兄弟之间组件通信的桥梁
+        el: '#app',
+        components: {
+            BComponent
+        }
+    });
+</script>
+</html>
