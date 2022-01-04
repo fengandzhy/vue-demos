@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animination</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .box{
+            height: 100px;
+            width: 100px;
+            border: 1px solid #00FF00;
+        }
+
+        .fade-slide-enter{
+            transform: translateX(0px);
+        }
+
+        .fade-slide-enter-active{
+            transition: all .3s ease; /*这里的all 表示所有的 css 样式都会参与这个变化, 持续时间是.3s ease开始和结束慢，中间快*/
+        }
+
+        .fade-slide-leave-active{
+            transition: all .5s ease;
+        }
+
+        .fade-slide-leave-to{
+            transform: translateX(200px);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+
+    </div>
+</body>
+<script>
+
+
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                show:true
+            }
+        },
+        template: `
+          <div>
+            <button @click="show=!show">Click me</button>
+            <transition name="fade-slide">
+                <div class="box" v-if="show"></div>
+            </transition>
+          </div>
+        `
+    });
+    console.log(vue.name);
+
+
+
+
+
+
+</script>
+</html>
