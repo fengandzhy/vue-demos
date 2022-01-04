@@ -14,22 +14,22 @@
             border: 1px solid #00FF00;
         }
 
-        /*进来之前，它所在的位置就是 x轴的0px初，这是它的初始位置*/
-        .fade-slide-enter{
-            transform: translateX(0px);
-        }
-        /*这是它从初始位置运动到最终位置的过程*/
-        .fade-slide-enter-active{
-            transition: all .3s ease; /*这里的all 表示所有的 css 样式都会参与这个变化, 持续时间是.3s ease开始和结束慢，中间快*/
+
+
+        .bounce-enter-active{
+            animation:bounce-in .5s;
         }
         /*从所在位置到离开位置的运动过程*/
-        .fade-slide-leave-active{
-            transition: all .5s ease;
+        .bounce-leave-active{
+            animation:bounce-in .5s reverse;
         }
-        /*这个是离开时的位置*/
-        .fade-slide-leave-to{
-            transform: translateX(200px);
+
+        @keyframes bounce-in {
+            0%{transform: scale(0)}
+            50%{transform: scale(1.5)}
+            100%{transform: scale(1)}
         }
+
 
     </style>
 </head>
@@ -51,7 +51,7 @@
         template: `
           <div>
             <button @click="show=!show">Click me</button>
-            <transition name="fade-slide">
+            <transition name="bounce">
                 <div class="box" v-if="show"></div>
             </transition>
           </div>
