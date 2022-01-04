@@ -30,13 +30,13 @@
     <div id="app">
 
         <panel>
-            <template v-slot:title>
-                <h3>我们爱你</h3>
+            <template v-slot:title="stu">
+                <h3>We love you{{stu.name}}</h3>
             </template>
             <template v-slot:default="stu">
-                通过父组件位置获取到子组件的用户姓名：{{stu.name}}
+                {{stu.name}}
             </template>
-            <div>欢迎学习vue.js</div>
+            <div>Welcome to vue.js</div>
             <a href="http://www.jd.com" slot="more">京东</a>
         </panel>
 
@@ -44,7 +44,7 @@
 </body>
 <script type="text/x-template" id="panelTpl">
     <div class="panel">
-        <div class="panel-header"><slot name="title" >默认头部内容</slot></div>
+        <div class="panel-header"><slot name="title">默认头部内容</slot></div>
         <div class="panel-body">
             <slot v-bind="stu"></slot>
         </div>
