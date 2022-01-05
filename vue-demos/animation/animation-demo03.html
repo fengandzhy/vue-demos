@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animation</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .box{
+            height: 100px;
+            width: 100px;
+            border: 1px solid #00FF00;
+        }
+        
+        .bounce-enter-active{
+            animation:bounce-in .5s;
+        }
+        /*从所在位置到离开位置的运动过程*/
+        .bounce-leave-active{
+            animation:bounce-in .5s reverse;
+        }
+
+        @keyframes bounce-in {
+            0%{transform: scale(0)}
+            50%{transform: scale(1.5)}
+            100%{transform: scale(1)}
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+
+    </div>
+</body>
+<script>
+
+
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                show:true
+            }
+        },
+        template: `
+          <div>
+            <button @click="show=!show">Click me</button>
+            <transition name="bounce">
+                <div class="box" v-if="show"></div>
+            </transition>
+          </div>
+        `
+    });
+    console.log(vue.name);
+
+
+
+
+
+
+</script>
+</html>
