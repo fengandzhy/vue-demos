@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animation</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .box{
+            height: 100px;
+            width: 100px;
+            border: 1px solid #00FF00;
+        }
+        /*这是进入时的起点位置*/
+        .fade-slide-enter{
+            transform: translateX(200px);
+        }
+        /*这是进入的具体过程描述*/
+        .fade-slide-enter-active{
+            transition: all 2s ease;
+        }
+        /*这是进入后的终点位置*/
+        .fade-slide-enter-to{
+            transform: translateX(0px);
+        }
+        /*这是离开时的起始位置*/
+        .fade-slide-leave{
+            transform: translateX(0px);
+        }
+        /*这是离开时的具体过程描述*/
+        .fade-slide-leave-active{
+            transition: all 2s ease;
+        }
+        /*这是离开后的终点位置*/
+        .fade-slide-leave-to{
+            transform: translateX(200px);
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                show:true
+            }
+        },
+        template: `
+          <div>
+            <button @click="show=!show">Click me</button>
+            <transition name="fade-slide">
+                <div class="box" v-if="show"></div>
+            </transition>
+          </div>
+        `
+    });
+
+</script>
+</html>
