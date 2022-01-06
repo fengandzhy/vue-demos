@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animation</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .box{
+            height: 100px;
+            width: 100px;
+            border: 1px solid #00FF00;
+        }
+        /*这是进入时的起点位置*/
+        .fade-slide-enter{
+            transform: translateX(200px);
+        }
+        /*这是进入的具体过程描述*/
+        .fade-slide-enter-active{
+            transition: all .3s ease;
+        }
+        /*这是进入后的终点位置*/
+        .fade-slide-enter-to{
+            transform: translateX(0px);
+        }
+        /*这是离开时的起始位置*/
+        .fade-slide-leave{
+            transform: translateX(0px);
+        }
+        /*这是离开时的具体过程描述*/
+        .fade-slide-leave-active{
+            transition: all .3s ease;
+        }
+        /*这是离开后的终点位置*/
+        .fade-slide-leave-to{
+            transform: translateX(0px);
+        }
+        .wrap{
+            width:100%;
+        }
+        .wrap .tab, .main .category-tab{
+            display: inline-block;
+            border:1px solid #EFEFEF;
+            padding: 5px 10px;
+            margin-left: 10px;
+            color: black;
+        }
+        .wrap .tab.active, .main .category-tab.active{
+            background-color: #0000FF;
+            color:#FFFFFF;
+        }
+        .main{
+            border:1px solid #EFEFEF;
+            padding:10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <div class="wrap">
+            <a href="#" v-for="tab in tabs" :key="tab.id">
+                <div :class="{'tab':true,'active':tab.active}" @click="shiftTab(tab)">{{tab.displayName}}</div>
+            </a>
+        </div>
+        <transition name="fade-slide" mode="out-in">
+            <keep-alive>
+                <component :is="currentComponent"></component>
+            </keep-alive>
+        </transition>
+    </div>
+</body>
+<script type="text/x-template" id="tempA">
+    <div class="main">菜品详情</div>
+</script>
+<script type="text/x-template" id="tempB">
+    <div class="main">
+        <input type="text"/>
+        <button>登录注册</button>
+    </div>
+</script>
+<script type="text/x-template" id="tempC">
+    <div class="main">
+        <a href="#" v-for="tab in tabs" :key="tab.id">
+            <div :class="{'category-tab':true,'active':tab.active}" @click="shiftTab(tab)">{{tab.displayName}}</div>
+        </a>
+    </div>
+</script>
+<script>
+    const DetailComponent={
+        template:'#tempA',
+    }
+
+    const LoginComponent={
+        template:'#tempB',
+    }
+    const CategoryComponent={
+        data(){
+            return{
+                tabs:[
+                    {id:1,displayName:'猪肉串',active:true},
+                    {id:2,displayName:'牛肉串',active:false},
+                    {id:3,displayName:'羊肉串',active:false}
+                ],
+            }
+        },
+        methods:{
+            shiftTab(tab){
+                for(let i =0;i<this.tabs.length;i++){
+                    if(this.tabs[i].active){
+                        this.tabs[i].active=false;
+                        break;
+                    }
+                }
+                tab.active = true;
+            }
+        },
+        template:'#tempC'
+    }
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                tabs:[
+                    {id:1,displayName:'菜品详情',component:'detail-component',active:true},
+                    {id:2,displayName:'注册登录',component:'login-component',active:false},
+                    {id:3,displayName:'菜品分类',component:'category-component',active:false}
+                ],
+                currentComponent:'detail-component'
+            }
+        },
+        methods:{
+            shiftTab(tab){
+                for(let i =0;i<this.tabs.length;i++){
+                    if(this.tabs[i].active){
+                        this.tabs[i].active=false;
+                        break;
+                    }
+                }
+                tab.active = true;
+                this.currentComponent = tab.component;
+            }
+        },
+        components:{
+            DetailComponent,
+            LoginComponent,
+            CategoryComponent
+        }
+    });
+
+    // const vue = new Vue({
+    //     el:'#app',
+    //     data(){
+    //         return{
+    //             show:true
+    //         }
+    //     },
+    //     template: `
+    //       <div>
+    //         <button @click="show=!show">Click me</button>
+    //         <transition name="fade-slide">
+    //             <div class="box" v-if="show"></div>
+    //         </transition>
+    //       </div>
+    //     `
+    // });
+
+</script>
+</html>
