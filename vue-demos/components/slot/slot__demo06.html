@@ -27,26 +27,28 @@
     </style>
 </head>
 <body>
-    <div id="app">
+<div id="app">
 
-        <panel>
-            <template v-slot:title>
-                <h3>We love you</h3>
-            </template>
-            <template v-slot:default="stu">
-                {{stu.name}}
-            </template>
-            <div>Welcome to vue.js</div>
-            <a href="http://www.jd.com" slot="more">京东</a>
-        </panel>
+    <panel>
+        <template v-slot:title="slotProps" >
+            <span>{{slotProps.value1}} </span>
+            <span>{{slotProps.value2}} </span>
+        </template>
+        <template  #default="{stu,dba}">
+            <div>{{stu}}</div>
+            <div>{{dba}}</div>
+        </template>
+        <div>Welcome to vue.js</div>
+        <a href="http://www.jd.com" slot="more">京东</a>
+    </panel>
 
-    </div>
+</div>
 </body>
 <script type="text/x-template" id="panelTpl">
     <div class="panel">
-        <div class="panel-header"><slot name="title">默认头部内容</slot></div>
+        <div class="panel-header"><slot name="title" value1="I am value1" value2="I am value2">默认头部内容</slot></div>
         <div class="panel-body">
-            <slot v-bind="stu"></slot>
+            <slot stu="TSP" dba="TSB"></slot>
         </div>
         <div class="panel-bottom"><slot name="more">默认底部内容</slot></div>
     </div>

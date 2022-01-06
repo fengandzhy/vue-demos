@@ -13,13 +13,13 @@
 <div id="app">
     <current-user>
         <template v-slot:default="userInfo">
-            通过父组件位置获取到子组件的用户姓名：{{userInfo.name}}
+            name from son component : {{userInfo.name}}
         </template>
     </current-user>
 </div>
 <template id="child">
     <div>
-        显示子组件自己的数据:{{userInfo.name}}
+        son component data:{{userInfo.name}}
 
         <br>
         <!-- 在插槽上绑定子组件的数据。 -->
@@ -39,7 +39,7 @@
                 data() {
                     return {
                         userInfo: {
-                            name: '徐照兴'
+                            name: 'zhy'
                         }
                     }
                 }
