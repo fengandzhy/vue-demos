@@ -6,7 +6,7 @@
     <script src="../js/vue.js"></script>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">{{stu.name}}</div>
 </body>
 <script>
     let stu = {
@@ -21,10 +21,12 @@
          *
          * */
         data(){
-            return stu;
+            return {
+                stu
+            }
         }
     });
-    console.log(vue.name);
+
 
 
     const vue1 = new Vue({
