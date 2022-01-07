@@ -42,7 +42,7 @@
 </head>
 <body>
 <div id="app" v-cloak>
-    <transition name="fade-slide" :css="false">
+    <transition  :css="false">
         <div v-if="show" class="box"></div>
     </transition>
     <button type="button" @click="show=!show">click me</button>

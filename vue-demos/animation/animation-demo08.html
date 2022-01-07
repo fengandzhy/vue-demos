@@ -5,6 +5,7 @@
     <title>animation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="../js/vue.js"></script>
+    <script src="../js/velocity.js"></script>
     <style>
         [v-cloak]{
             display: none;
@@ -20,10 +21,8 @@
 <div id="app" v-cloak>
     <transition @before-enter="beforeEnter"
                 @enter="enter"
-                @after-enter="afterEnter"
-                @before-leave="beforeLeave"
                 @leave="leave"
-                @after-leave="afterLeave" :css="false">
+                :css="false">
         <div v-if="show" class="box"></div>
     </transition>
     <button type="button" @click="show=!show">click me</button>
@@ -41,30 +40,19 @@
         methods:{
             //过渡进入之前的组件状态
             beforeEnter(el){
-                console.log("beforeEnter",el);
+                el.style.opacity =0;
+                el.style.transformOrigin = "left";
             },
             //过渡进入完成时的状态
             enter(el, done){
-                console.log("enter",el);
-                done();
+
             },
-            //过渡进入完成之后的状态
-            afterEnter(el){
-                console.log("afterEnter",el);
-            },
-            // 过渡离开之前的状态
-            beforeLeave(el) {
-                console.log("beforeLeave",el);
-            },
+
             // 过渡离开完成时的状态
             leave(el, done) {
-                console.log("leave",el);
-                done()
-            },
-            // 过渡离开完成之后的状态
-            afterLeave(el) {
-                console.log("afterLeave",el);
+
             }
+
         }
     });
 
