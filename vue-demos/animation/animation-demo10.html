@@ -5,45 +5,24 @@
     <title>animation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="../js/vue.js"></script>
+    <script src="../js/velocity.js"></script>
     <style>
         [v-cloak]{
             display: none;
         }
-        .box{
-            height: 100px;
-            width: 100px;
-            border: 1px solid #00FF00;
+        p {
+            opacity:1;
+            transform-origin:left;
         }
-        @keyframes come_in{
-            0%{
-                transform :translateX(-120px)
-            }
-            100%{
-                transform :translateX(0px)
-            }
-        }
-        @keyframes come_out{
-            0%{
-                transform :translateX(0px)
-            }
-            100%{
-                transform :translateX(-120px)
-            }
-        }
-        .fade-slide-enter-active{
-            animation: come_in 1s;
-        }
-
-        .fade-slide-leave-active{
-            animation: come_out 1s;
-        }
-
     </style>
 </head>
 <body>
 <div id="app" v-cloak>
-    <transition  :css="false">
-        <div v-if="show" class="box"></div>
+    <transition @before-enter="beforeEnter"
+                @enter="enter"
+                @leave="leave"
+                :css="false">
+        <p v-if="show">Demo</p>
     </transition>
     <button type="button" @click="show=!show">click me</button>
 </div>
@@ -56,8 +35,23 @@
             return{
                 show:true
             }
+        },
+        methods:{
+            beforeEnter(el){
+                el.style.opacity=0;
+                el.style.transformOrigin="left";
+                console.log('In the beforeEnter method!');
+            },
+            enter(el,done){
+                Velocity(el,{opacity:1,fontSize:"1.4em"},{duration:300});
+                Velocity(el,{fontSize:"1em"},{complete:done});
+            },
+            leave(el,done){
+                Velocity(el,{translateX:"15px",rotateZ:"50deg"},{duration:600});
+                Velocity(el,{rotateZ: "100deg"},{duration:600,loop:2});
+                Velocity(el,{rotateZ:"45deg",translateX: "30px",translateY:"30px",opacity:0},{duration:600, complete:done});
+            }
         }
     });
-
 </script>
 </html>
