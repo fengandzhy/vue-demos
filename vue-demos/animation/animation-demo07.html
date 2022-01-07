@@ -17,18 +17,18 @@
     </style>
 </head>
 <body>
-    <div id="app" v-cloak>
-        <transition  enter-active-class="animate__animated animate__bounce"
-                    leave-active-class="animate__animated animate__rotateInDownLeft">
-            <div v-if="show" class="box"></div>
-        </transition>
-        <button type="button" @click="show=!show">click me</button>
-    </div>
+<div id="app" v-cloak>
+    <transition
+            enter-active-class="animate__animated animate__tada"
+            leave-active-class="animate__animated animate__backInRight"
+            :duration="{ enter: 2000, leave: 4000 }">
+        <div v-if="show" class="box"></div>
+    </transition>
+    <button type="button" @click="show=!show">click me</button>
+</div>
 </body>
 
 <script>
-
-
     const vue = new Vue({
         el:'#app',
         data(){
