@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="../js/vue.js"></script>
+    <script src="../js/velocity.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .list-item{
+            display: inline-block;
+            margin-right:10px
+        }
+
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+
+</div>
+</body>
+<script type="text/x-template" id="swiper">
+    <div>
+        
+    </div>
+</script>
+<script>
+
+    const swiper = {
+
+    }
+
+
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                list:[0,1,2,3,4,5,6,7,8,9],
+                nextNum:10
+            }
+        },
+        methods:{
+            randomIndex(){
+                return Math.floor(Math.random()*this.list.length);
+            },
+            Add(){
+                this.list.splice(this.randomIndex(),0,this.nextNum++);
+            },
+            Remove(){
+                this.list.splice(this.randomIndex(),1);
+            }
+        }
+    });
+</script>
+</html>
