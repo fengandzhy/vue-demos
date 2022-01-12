@@ -98,19 +98,38 @@
         },
         data(){
             return{
-                images:this.img
+                images:this.img,
+                currentIndex: 0
             }
         },
         methods:{
             swipe(index){
+                this.currentIndex = index;
                 for(let i=0;i<this.images.length;i++){
-                    if(i == index){
+                    if(i == this.currentIndex){
                         this.images[i].active = true;
                         continue;
                     }
                     this.images[i].active = false;
                 }
+            },
+            regularSwipe(){
+                if(this.currentIndex == this.images.length-1){
+                    this.currentIndex = 0;
+                }else{
+                    this.currentIndex++;
+                }
+                this.swipe(this.currentIndex);
             }
+        },
+        mounted() {
+            if (this.timer) {
+                clearInterval(this.timer);
+            }
+            this.timer = setInterval(this.regularSwipe, 3000);
+        },
+        beforeDestroy(){
+            clearInterval(this.timer);
         },
         template:'#swiper'
     }
