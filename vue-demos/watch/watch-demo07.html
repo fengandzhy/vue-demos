@@ -43,27 +43,22 @@
             updateObject(){
                 if(this.categories[0].children[1].title=='可乐'){
                     this.categories[0].children[1].title='健力宝'
+                    this.$set(this.categories,0,this.categories[0]);
                     return;
                 }
                 this.categories[0].children[1].title='可乐';
+                this.$set(this.categories,0,this.categories[0]);
             }
         },
-        created () {
-            // this.$watch(
-            //     function () { // 第一个函数就是处理你要监听的属性，只要将其return出去就行
-            //         return this.categories[0].children[1].title;
-            //     },
-            //     function (newValue, oldValue) {
-            //         console.log(`新值：${newValue} --------- 旧值：${oldValue}`);
-            //     }
-            // )
-            this.$watch('categories',
-                function (newValue, oldValue) {
-                    console.log(`新值：${newValue} --------- 旧值：${oldValue}`);
+        watch:{
+            'categories':{
+                handler(newValue, oldValue){
+                    console.log(newValue);
+                    console.log(oldValue);
                 },
-                {deep: true}
-            );
-        },
+                // deep:true
+            }
+        }
     });
 </script>
 </html>
