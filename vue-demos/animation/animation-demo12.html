@@ -58,6 +58,12 @@
             background-color: rgba(0,0,0,0.8);
         }
 
+        .slide-enter{opacity: 0}
+        .slide-enter-to{opacity:1}
+        .slide-leave{opacity:1}
+        .slide-leave-to{opacity:0}
+        .slide-enter-active,.slide-leave-active{transition: opacity 1s;}
+
     </style>
 </head>
 <body>
@@ -69,14 +75,14 @@
     <div>
         <div class="swiper-main">
             <div class="swiper-wrap">
-                <div class="slide"><img src="../img/banner/banner1.jpg" alt=""></div>
-                <div class="slide"><img src="../img/banner/banner2.jpg" alt=""></div>
-                <div class="slide"><img src="../img/banner/banner3.jpg" alt=""></div>
+                <transition-group name="slide">
+                    <div class="slide" v-for="(item,index) in images" v-show="item.active" :key="item.id">
+                        <img :src="item.url" alt="">
+                    </div>
+                </transition-group>
             </div>
             <div class="page">
-                <div class="item active"></div>
-                <div class="item"></div>
-                <div class="item"></div>
+                <div v-for="(item,index) in images" :key="item.id" :class="{item:true, active:item.active}" @click="swipe(index)"></div>
             </div>
         </div>
     </div>
@@ -95,6 +101,17 @@
                 images:this.img
             }
         },
+        methods:{
+            swipe(index){
+                for(let i=0;i<this.images.length;i++){
+                    if(i == index){
+                        this.images[i].active = true;
+                        continue;
+                    }
+                    this.images[i].active = false;
+                }
+            }
+        },
         template:'#swiper'
     }
 
@@ -103,7 +120,7 @@
         data(){
             return{
                 images:[
-                    {id:1,url:'../img/banner/banner1.jpg',active:false},
+                    {id:1,url:'../img/banner/banner1.jpg',active:true},
                     {id:2,url:'../img/banner/banner2.jpg',active:false},
                     {id:3,url:'../img/banner/banner3.jpg',active:false},
                 ]
