@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>watch</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="addObject" type="button">添加属性</button>
+        <button @click="updateNewAttr" type="button">更新新加属性</button>
+        <button @click="updateOldAttr" type="button">更新老属性</button>
+    </div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+
+        data(){
+            return {
+                categories:[
+                    {
+                        title:"肉类",
+                        children:[
+                            {title:"羊肉串"},
+                            {title:"猪肉串"},
+                            {title:"牛肉串"}
+                        ]
+                    },
+                    {
+                        title:"饮料",
+                        children:[
+                            {title:"可乐"},
+                            {title:"雪碧"},
+                            {title:"美年达"}
+                        ]
+                    }
+                ]
+            }
+        },
+        methods:{
+            updateNewAttr(){
+                if(this.categories[0].category=='食物'){
+                    this.categories[0].category='吃的';
+                    this.$set(this.categories,0,this.categories[0]);
+                    return;
+                }
+                this.categories[0].category='食物';
+                this.$set(this.categories,0,this.categories[0]);
+            },
+            addObject(){
+                for(let i=0;i<this.categories.length;i++){
+                    if(this.categories[i].title == '肉类'){
+                        this.categories[i].category = '食物';
+                    }
+                    if(this.categories[i].title == '饮料'){
+                        this.categories[i].category = '水';
+                    }
+                }
+            },
+            updateOldAttr(){
+                if(this.categories[0].children[1].title=='可乐'){
+                    this.categories[0].children[1].title='健力宝'
+                    return;
+                }
+                this.categories[0].children[1].title='可乐';
+            }
+        },
+        watch:{
+            'categories':{
+                handler(newValue, oldValue){
+                    console.log(newValue);
+                    console.log(oldValue);
+                },
+                deep:true
+            }
+        }
+    });
+</script>
+</html>
