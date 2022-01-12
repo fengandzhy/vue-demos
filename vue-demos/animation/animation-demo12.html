@@ -62,7 +62,7 @@
 </head>
 <body>
 <div id="app" v-cloak>
-    <swiper></swiper>
+
 </div>
 </body>
 <script type="text/x-template" id="swiper">
@@ -84,16 +84,29 @@
 <script>
 
     const swiper = {
+        props:{
+            img:{
+                type: Array,
+                default:()=>[]
+            }
+        },
+        data(){
+            return{
+                images:this.img
+            }
+        },
         template:'#swiper'
     }
-
 
     const vue = new Vue({
         el:'#app',
         data(){
             return{
-                list:[0,1,2,3,4,5,6,7,8,9],
-                nextNum:10
+                images:[
+                    {id:1,url:'../img/banner/banner1.jpg',active:false},
+                    {id:2,url:'../img/banner/banner2.jpg',active:false},
+                    {id:3,url:'../img/banner/banner3.jpg',active:false},
+                ]
             }
         },
         methods:{
@@ -109,7 +122,11 @@
         },
         components:{
             swiper
-        }
+        },
+        template: `
+            <swiper :img="images"></swiper>
+        `
     });
+    console.log(swiper);
 </script>
 </html>

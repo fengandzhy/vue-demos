@@ -40,6 +40,11 @@
                 type:String
             }
         },
+        data(){
+            return{
+                message:'ABC'
+            }
+        },
         template:'#tempA',
     }
 
@@ -57,9 +62,16 @@
     }
     const vue = new Vue({
         el:'#app',
+        data(){
+            return{
+                falg:true
+            }
+        },
         components:{
             BComponent
         }
     });
+    console.log(AComponent.$data);
+    console.log(vue.$data);
 </script>
 </html>
