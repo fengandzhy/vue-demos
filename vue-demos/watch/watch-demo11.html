@@ -56,32 +56,36 @@
               default:()=>[]
           }
         },
-        watch:{
-            data(val){
-                if(val.length>0){
-                    for(let i=0;i<val.length;i++){
-                        if(i==0){
-                            val[i].isShow=true;
-                        }else{
-                            val[i].isShow=false;
-                        }
+        created(){
+            this.slides = this.data;
+            if(this.slides.length>0){
+                for(let i=0;i<this.slides.length;i++){
+                    if(i==0){
+                        this.slides[i].isShow=true;
+                    }else{
+                        this.slides[i].isShow=false;
                     }
                 }
-                // this.slides=JSON.parse(JSON.stringify(val));
-                this.slides = val;
+            }
+        },
+        watch:{
+            data(val){
+                console.log(val);
             }
         },
         methods:{
             changeImg(index){
                 for(let i=0;i<this.slides.length;i++){
                     if(i == index){
-                        this.slides[i].img='../img/banner/banner3.jpg'; // 改变原有的属性可以渲染到页面中去
-                        this.slides[i].isShow=true; //改变新的属性无法渲染到页面
+                        this.slides[i].isShow=true;
                     }else{
                         this.slides[i].isShow=false;
                     }
                 }
-                // this.$set(this.slides,index,this.slides[index]);
+                for(let i=0;i<this.slides.length;i++){
+                    console.log(i,this.slides[i].isShow);
+                }
+                this.$set(this.slides,index,this.slides[index]);
             }
         }
     };
@@ -89,17 +93,12 @@
         el:"#app",
         data(){
             return {
-                slides: []
-            }
-        },
-        created() {
-            setTimeout(()=>{
-                this.slides=[
+                slides: [
                     {id: 1, img: "../img/banner/banner1.jpg"},
                     {id: 2, img: "../img/banner/banner2.jpg"},
                     {id: 3, img: "../img/banner/banner3.jpg"}
                 ]
-            },300)
+            }
         },
         components:{
             Swiper
