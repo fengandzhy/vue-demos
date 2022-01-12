@@ -57,44 +57,20 @@
           }
         },
         watch:{
-            // data(val){
-            //     if(val.length>0){
-            //         for(let i=0;i<val.length;i++){
-            //             if(i==0){
-            //                 val[i].isShow=true;
-            //             }else{
-            //                 val[i].isShow=false;
-            //             }
-            //         }
-            //     }
-            //     // this.slides=JSON.parse(JSON.stringify(val));
-            //     this.slides = val;
-            // }
-            "data":{
-                handler(val,val2){
-                    console.log(val2);
-                    console.log(val);
-                    if(val.length>0){
-                        for(let i=0;i<val.length;i++){
-                            if(i==0){
-                                val[i].isShow=true;
-                            }else{
-                                val[i].isShow=false;
-                            }
+            data(val){
+                if(val.length>0){
+                    for(let i=0;i<val.length;i++){
+                        if(i==0){
+                            val[i].isShow=true;
+                            console.log(val);
+                        }else{
+                            val[i].isShow=false;
+                            console.log(val);
                         }
                     }
-                    // this.slides=JSON.parse(JSON.stringify(val));
-                    this.slides = val;
-                },
-                deep:true
-            },
-            "slides":{
-                handler(val,val2){
-                    console.log("We are here!");
-                    console.log(val2);
-                    console.log(val);
-                },
-                deep:true
+                }
+                this.slides=JSON.parse(JSON.stringify(val));
+                // this.slides = val;
             }
         },
         methods:{
@@ -106,8 +82,7 @@
                     }
                 }
                 this.slides[index].isShow=true;
-                console.log(this.slides[index].isShow);
-                // this.$set(this.slides,index,this.slides[index]);
+                this.$set(this.slides,index,this.slides[index]);
             }
         }
     };
