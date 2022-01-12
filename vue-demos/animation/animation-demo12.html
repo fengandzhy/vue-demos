@@ -98,9 +98,12 @@
         },
         data(){
             return{
-                images:this.img,
+                images:[],
                 currentIndex: 0
             }
+        },
+        created(){
+            this.images = this.img;
         },
         methods:{
             swipe(index){
@@ -112,6 +115,7 @@
                     }
                     this.images[i].active = false;
                 }
+                // this.$set(this.images,index,this.images[index]);
             },
             regularSwipe(){
                 if(this.currentIndex == this.images.length-1){
@@ -145,6 +149,7 @@
                 ]
             }
         },
+
         methods:{
             randomIndex(){
                 return Math.floor(Math.random()*this.list.length);
