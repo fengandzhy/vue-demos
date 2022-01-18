@@ -10,13 +10,20 @@
         [v-cloak]{
             display:none;
         }
-        .box, .box1, .box2
-        , .box3, .box4{
+        .box1{
             width:100px;
             height:100px;
             background-color: #0000FF;
-            display: block;
+            display: inline-block;
             margin-bottom:10px;
+        }
+        .box2{
+            width:100px;
+            height:100px;
+            background-color: #FF0000;
+            position: absolute;
+            left:0px;
+            top:105px;
         }
     </style>
 </head>
@@ -29,20 +36,15 @@
     let AppComponent={
         template:`
           <div>
-              <div class="box" ref="box"></div>
               <div class="box1" ref="box1"></div>
               <div class="box2" ref="box2"></div>
-              <div class="box3" ref="box3"></div>
-              <div class="box4" ref="box4"></div>
           </div>
       `,
         mounted(){
-            TweenMax.to(this.$refs['box'],10,{x:500});
-            TweenMax.from(this.$refs['box1'],10,{x:500});
-            TweenMax.fromTo(this.$refs['box2'], 10, {opacity:1}, {opacity:0});
-            TweenMax.from(this.$refs['box3'], 10, {scale:0.0, opacity:0.0});
-            TweenLite.to(this.$refs['box3'], 10, {scale:0.5, opacity:0.5});
-            TweenLite.to(this.$refs['box4'], 2, {rotation:360, skewX:"30deg"});
+            TweenMax.fromTo([this.$refs['box1'],this.$refs['box2']],3,{
+                x:10,
+                y:10
+            },{x:300,y:300});
         }
     };
     new Vue({
