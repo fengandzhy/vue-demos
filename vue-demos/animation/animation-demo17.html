@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>抛物线</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+        html,body{
+            padding:0px;
+            margin:0px;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak></div>
+<script src="../js/vue.js"></script>
+<script src="../js/TweenMax.js"></script>
+<script>
+    //swiper组件
+    let AppComponent={
+        template:`
+            <div class="page">
+
+            </div>
+      `
+
+    };
+    new Vue({
+        el:"#app",
+        components:{
+            AppComponent
+        },
+        template:`
+            <div>
+                <app-component></app-component>
+            </div>
+        `
+    })
+</script>
+</body>
+</html>
