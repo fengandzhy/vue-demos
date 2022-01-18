@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>TweenMax动画效果</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+        .box{
+            width:100px;
+            height:100px;
+            background-color: #0000FF;
+            display: inline-block;
+            margin-bottom:10px;
+        }
+        .box.green{background-color: #6fb936;}
+        .box.grey{background-color: #989898;}
+        .box.orange{background-color: #f38630;}
+    </style>
+</head>
+<body>
+<div id="app" v-cloak></div>
+<script src="../js/vue.js"></script>
+<script src="../js/TweenMax.js"></script>
+<script>
+    //swiper组件
+    let AppComponent={
+        template:`
+            <div>
+                <div class="box green"></div>
+                <div class="box grey"></div>
+                <div class="box orange"></div>
+                <div class="box green"></div>
+                <div class="box grey"></div>
+                <div class="box orange"></div>
+                <div class="box green"></div>
+                <div class="box grey"></div>
+                <div class="box orange"></div>
+            </div>
+      `,
+        mounted(){
+            TweenMax.staggerFromTo(".box",1,{rotation:0,x:0,y:0},{rotation:360,x:100,y:100},1,function(val1,val2,val3){
+                console.log("动画执行完成",val1,val2,val3);
+            },["360","100",100]);
+        }
+    };
+    new Vue({
+        el:"#app",
+        components:{
+            AppComponent
+        },
+        template:`
+            <div>
+                <app-component></app-component>
+            </div>
+        `
+    })
+</script>
+</body>
+</html>
