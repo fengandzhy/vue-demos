@@ -27,7 +27,6 @@
 </script>
 <script type="text/x-template" id="tempB">
     <div>
-
         <a-component :first-title="firstTitle" :second-title="secondTitle"></a-component>
     </div>
 </script>
@@ -57,7 +56,7 @@
                 }
             }
         },
-        template:'#tempA',
+        template:`#tempA`,
     }
 
     const BComponent={
@@ -70,7 +69,7 @@
         components:{
             AComponent
         },
-        template:'#tempB'
+        template:`#tempB`
     }
     const vue = new Vue({
         el:'#app',
