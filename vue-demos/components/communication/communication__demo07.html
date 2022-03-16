@@ -8,16 +8,16 @@
     <title>components-communication</title>
     <script src="../../js/vue.js"></script>
     <style>
-        [v-cloak]{
+        [v-cloak] {
             display: none;
         }
 
     </style>
 </head>
 <body>
-    <div id="app">
-        <father-component></father-component>
-    </div>
+<div id="app">
+    <father-component></father-component>
+</div>
 </body>
 <script type="text/x-template" id="tempA">
     <div>
@@ -28,30 +28,30 @@
     <son-component :message="message" hhh="hhh" style="height:100px"></son-component>
 </script>
 <script>
-    const SonComponent={
-        props:{
-            'message':{
-                type:String
+    const SonComponent = {
+        props: {
+            message: {
+                type: String
             }
         },
-        inheritAttrs:true,
-        template:'#tempA',
+        inheritAttrs: true,
+        template: `#tempA`,
     }
 
-    const FatherComponent={
-        data(){
-            return{
-                message:'Welcome to Vue'
+    const FatherComponent = {
+        data() {
+            return {
+                message: 'Welcome to Vue'
             }
         },
-        components:{
+        components: {
             SonComponent
         },
-        template:'#tempB'
+        template: `#tempB`
     }
     const vue = new Vue({
-        el:'#app',
-        components:{
+        el: '#app',
+        components: {
             FatherComponent
         }
     });
