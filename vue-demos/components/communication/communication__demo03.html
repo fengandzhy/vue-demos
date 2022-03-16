@@ -8,15 +8,15 @@
     <title>components-communication</title>
     <script src="../../js/vue.js"></script>
     <style>
-        [v-cloak]{
+        [v-cloak] {
             display: none;
         }
     </style>
 </head>
 <body>
-    <div id="app">
-        <b-component></b-component>
-    </div>
+<div id="app">
+    <b-component></b-component>
+</div>
 </body>
 <script type="text/x-template" id="tempA">
     <div>
@@ -31,49 +31,49 @@
     </div>
 </script>
 <script>
-    const AComponent={
+    const AComponent = {
         props: {
-            firstTitle:{
-                type:String,
-                required:true,
-                default:'I am a default title'
+            firstTitle: {
+                type: String,
+                required: true,
+                default: 'I am a default title'
             },
-            secondTitle:{
-                type:String,
-                default:'I am a default title for secondTitle'
+            secondTitle: {
+                type: String,
+                default: 'I am a default title for secondTitle'
             },
-            list:{
-                type:Array,
-                default:()=>['A','B','C']
+            list: {
+                type: Array,
+                default: () => ['A', 'B', 'C']
             },
-            obj:{
-                type:Object,
-                default:()=> {
-                    return{
-                        'name':'A',
-                        'age':23
+            obj: {
+                type: Object,
+                default: () => {
+                    return {
+                        'name': 'A',
+                        'age': 23
                     }
                 }
             }
         },
-        template:`#tempA`,
+        template: `#tempA`,
     }
 
-    const BComponent={
-        data(){
-            return{
-                firstTitle:'firstTitle from B',
-                secondTitle:'secondTitle from B'
+    const BComponent = {
+        data() {
+            return {
+                firstTitle: 'firstTitle from B',
+                secondTitle: 'secondTitle from B'
             }
         },
-        components:{
+        components: {
             AComponent
         },
-        template:`#tempB`
+        template: `#tempB`
     }
     const vue = new Vue({
-        el:'#app',
-        components:{
+        el: '#app',
+        components: {
             BComponent
         }
     });
