@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>beginning-demo01</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">{{stu.name}}</div>
+</body>
+<script type="text/javascript">
+    let stu = {
+        name:'张三',
+        age: 18
+    }
+
+    const vue = new Vue({
+        data(){
+            return {
+                stu
+            }
+        }
+    });
+    vue.$mount('#app');
+
+</script>
+</html>
