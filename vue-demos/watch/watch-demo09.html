@@ -67,7 +67,7 @@
                         }
                     }
                 }
-                this.slides=JSON.parse(JSON.stringify(val));
+                this.slides=JSON.parse(JSON.stringify(val)); // 必须要这么做，如果 this.slides = val; 那么只要改slides都会触发data, 因为它们引用的是同一个代码
             }
         },
         methods:{
@@ -75,13 +75,12 @@
                 console.log(this.slides);
                 for(let i=0;i<this.slides.length;i++){
                     if(i == index){
-                        // this.slides[i].img='../img/banner/banner3.jpg'; // 改变原有的属性可以渲染到页面中去
                         this.slides[i].isShow=true; //改变新的属性无法渲染到页面
                     }else{
                         this.slides[i].isShow=false;
                     }
                 }
-                this.$set(this.slides,index,this.slides[index]);
+                this.$set(this.slides,index,this.slides[index]); // 加了这一行不需要在watch中加入deep:true了
             }
         }
     };
