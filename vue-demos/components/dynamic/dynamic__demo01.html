@@ -61,11 +61,11 @@
 </script>
 <script>
     const DetailComponent={
-        template:'#tempA',
+        template:`#tempA`,
     }
 
     const LoginComponent={
-        template:'#tempB',
+        template:`#tempB`,
         created() {
             console.log("我是created钩子");
         },
@@ -106,7 +106,7 @@
                 tab.active = true;
             }
         },
-        template:'#tempC'
+        template:`#tempC`
     }
     const vue = new Vue({
         el:'#app',
