@@ -73,8 +73,10 @@
 				//监视多级结构中所有属性的变化
 				numbers:{
 					deep:true,
-					handler(){
-						console.log('numbers改变了')
+					handler(v1,v2){
+						console.log('numbers改变了');
+						console.log(v1);
+						console.log(v2);
 					}
 				}
 			}
