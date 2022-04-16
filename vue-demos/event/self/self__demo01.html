@@ -26,9 +26,9 @@
 </head>
 <body>
     <div id="app" v-cloak>
-        <div class="outDiv" @click.self="outDivClickHandler">
-            <div class="div" @click.self="divClickHandler">
-                <button @click.self="btnClickHandler()">click me</button>
+        <div class="outDiv" @click.self="outDivClickHandler($event)">
+            <div class="div" @click.self="divClickHandler($event)">
+                <button @click.self="btnClickHandler($event)">click me</button>
             </div>
         </div>
     </div>
@@ -43,13 +43,16 @@
             }
         },
         methods:{
-            outDivClickHandler(){
+            outDivClickHandler(event){
+                console.log(event.target);
                 console.log('This is out div event!');
             },
-            divClickHandler(){
+            divClickHandler(event){
+                console.log(event.target);
                 console.log('This is div event!');
             },
-            btnClickHandler(){
+            btnClickHandler(event){
+                console.log(event.target);
                 console.log('This is btn event!');
             }
         }
