@@ -16,7 +16,10 @@
 <body>
     <div id="app">
         <p><a v-bind:href="link">程序思维 </a></p>
+        <!--这里的link没有加引号,所以它是个变量-->
         <p><a :href="link">程序思维 </a></p>
+        <!--这里的link加引号,所以它是个字符串-->
+        <p><a :href="'link'">程序思维 </a></p>
         <p><a :[attr_href]="link">程序思维 </a></p>
     </div>
 </body>
