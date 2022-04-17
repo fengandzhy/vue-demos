@@ -46,7 +46,7 @@
 										数组写法适用于：要绑定多个样式，个数确定，名字也确定，但不确定用不用。
 					2. style样式
 								:style="{fontSize: xxx}"其中xxx是动态值。
-								:style="[a,b]"其中a、b是样式对象。
+								:style="[a,b]"其中a、b是样式对象，样式对象的key不能瞎写，必须是存在的样式，而且是驼峰形式。
 		-->
 		<!-- 准备好一个容器-->
 		<div id="root">
@@ -62,7 +62,9 @@
 			<!-- 绑定style样式--对象写法 -->
 			<div class="basic" :style="[styleObj, styleObj2]">{{name}}</div> <br/><br/>
 			<!-- 绑定style样式--数组写法 -->
-			<div class="basic" :style="styleArr">{{name}}</div>
+			<div class="basic" :style="styleArr">{{name}}</div><br/><br/>
+
+<!--			<div class="basic" :style="styleArr1">{{name}}</div>-->
 		</div>
 	</body>
 
@@ -86,6 +88,7 @@
 				styleObj2:{
 					backgroundColor:'orange'
 				},
+				// 注意这里的数组一定不能写成变量形式 styleArr1:[this.styleObj,this.styleObj2] 是不可以的
 				styleArr:[
 					{
 						fontSize: '40px',
