@@ -36,11 +36,23 @@
                     {id:2, title:'啤酒', price:4},
                     {id:3, title:'花毛一体', price:10}
                 ],
+                index: 3
             }
         },
         methods:{
             add(){
-                this.list.unshift({title:'酱牛肉', price:12});
+                switch (this.index){
+                    case 3:
+                        this.list.unshift({id:this.index++,title:'酱牛肉', price:12});
+                        break;
+                    case 4:
+                        this.list.unshift({id:this.index++,title:'酱肘子', price:13});
+                        break;
+                    case 5:
+                        this.list.unshift({id:this.index++,title:'海带丝', price:5});
+                        break;
+                }
+
             }
         }
     });
