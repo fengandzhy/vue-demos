@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>v-for</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="text" placeholder="请输入名字" v-model="keyWord"/>
+    <ul>
+        <li v-for="(item) in computedList " :key="item.id">
+            {{item.name}}
+        </li>
+    </ul>
+</div>
+</body>
+<script>
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return{
+                keyWord:'',
+                persons:[
+                    {id:'001',name:'马冬梅',age:19,sex:'女'},
+                    {id:'002',name:'周冬雨',age:20,sex:'女'},
+                    {id:'003',name:'周杰伦',age:21,sex:'男'},
+                    {id:'004',name:'温兆伦',age:22,sex:'男'}
+                ]
+            }
+        },
+        computed:{
+            computedList(){
+                return this.persons.filter((item)=>item.name.indexOf(this.keyWord)!=-1);
+            }
+        }
+    });
+
+</script>
+</html>
