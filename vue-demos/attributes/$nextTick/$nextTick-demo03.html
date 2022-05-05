@@ -20,21 +20,20 @@
 </body>
 <script>
     const vue = new Vue({
+        el:'#app',
         data(){
             return {
                 msg:'Welcome to Vue'
             }
-        },
-    }).$mount('#app');
-    vue.$nextTick(function(){
-        console.log(vue.$refs.title.textContent);
+        }
     });
-    vue.msg='Welcome to XDZ';
-    console.log(vue.$refs.title.textContent);
+    vue.msg = 'Welcome to XDZ';
+    console.log('Data',vue.msg);
+    console.log('Dom',vue.$refs.title.textContent);
     vue.$nextTick(function(){
-        console.log(vue.$refs.title.textContent);
+        console.log('nextTick Dom',vue.$refs.title.textContent);
     });
-    console.log('We are here!');
-    vue.msg='Welcome to BTC';
+
+
 </script>
 </html>
