@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>components-high-charts</title>
+    <script src="../../js/vue.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <high-chart-component :options="options"></high-chart-component>
+</div>
+<template id="temp1">
+    <div>
+        <div id="container" style="width: 600px;height:400px;"></div>
+    </div>
+</template>
+</body>
+<script>
+    let options = {
+        chart: {
+            type: 'column',
+            renderTo : 'container'
+        },
+        xAxis: {
+            categories: ['Green', 'Pink']
+        },
+        series: [{
+            data: [{
+                name: 'Point 1',
+                color: '#00FF00',
+                y: 1
+            }, {
+                name: 'Point 2',
+                color: '#FF00FF',
+                y: 5
+            }]
+        }]
+    };
+
+    const highChartComponent={
+        props: {
+            options: {
+                type: Object,
+                required:true
+            }
+        },
+        data(){
+            return{
+            }
+        },
+        template:`#temp1`,
+        mounted() {//钩子函数挂载时实例化这个图表
+            Highcharts.chart(options); // 用 mounted 来实现挂载 high charts 对象.
+        }
+    }
+
+
+    const vue = new Vue({
+        el:'#app',
+        data(){
+            return options
+        },
+        components:{
+            highChartComponent
+        }
+    });
+
+
+
+</script>
+</html>
