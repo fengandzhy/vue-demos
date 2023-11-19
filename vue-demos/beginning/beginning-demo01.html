@@ -6,7 +6,8 @@
     <script src="../js/vue.js"></script>
 </head>
 <body>
-    <div id="app">{{number}}</div>
+    <div id="app1">{{stu.name}}</div>
+    <div id="app2">{{number}}</div>
 </body>
 <script type="text/javascript">
     let stu = {
@@ -15,7 +16,7 @@
     }
 
     const vue = new Vue({
-        el:'#app', // 这里的el:'#app' 表示将这个vue对象挂载到id='#app'的组件上, 注意一定要是el, 其他的不行
+        el:'#app1', // 这里的el:'#app' 表示将这个vue对象挂载到id='#app'的组件上, 注意一定要是el, 其他的不行
         /**
          * 这个data是个函数, 它必须有return, 这个return就是vue对象所绑定的值, 本例中它绑定的是stu, 那么vue.name就能得到张三
          *
@@ -30,7 +31,6 @@
 
 
     const vue1 = new Vue({
-        tl:'#app',
         data(){
             return{
                 stu:stu,
@@ -38,7 +38,7 @@
             }
         }
     });
-
+    vue1.$mount('#app2')
 
 
 </script>
